@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\builder.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\c.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\db_impl.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\db_iter.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\dbformat.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\dumpfile.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\filename.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\log_reader.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\log_writer.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\memtable.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\repair.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\table_cache.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\version_edit.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\version_set.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\db\write_batch.cc">
+      <Filter>src\leveldb\db</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\block.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\block_builder.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\filter_block.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\format.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\iterator.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\merger.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\table.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\table_builder.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\table\two_level_iterator.cc">
+      <Filter>src\leveldb\table</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\arena.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\bloom.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\cache.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\coding.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\comparator.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\crc32c.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\env.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\env_windows.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\filter_policy.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\hash.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\logging.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\options.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\leveldb\util\status.cc">
+      <Filter>src\leveldb\util</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\snappy\snappy-c.cc">
+      <Filter>src\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\snappy\snappy-sinksource.cc">
+      <Filter>src\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\src\snappy\snappy.cc">
+      <Filter>src\snappy</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\github\stonks\app\main.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InParser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stonks.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\github\stonks\include\leveldb\c.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\cache.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\comparator.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\db.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\dumpfile.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\env.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\export.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\filter_policy.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\iterator.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\options.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\slice.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\status.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\table.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\table_builder.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\include\leveldb\write_batch.h">
+      <Filter>include\leveldb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\builder.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\db_impl.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\db_iter.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\dbformat.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\filename.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\log_format.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\log_reader.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\log_writer.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\memtable.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\skiplist.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\snapshot.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\table_cache.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\version_edit.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\version_set.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\db\write_batch_internal.h">
+      <Filter>src\leveldb\db</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\port\port.h">
+      <Filter>src\leveldb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\port\port_stdcxx.h">
+      <Filter>src\leveldb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\port\thread_annotations.h">
+      <Filter>src\leveldb\port</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\block.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\block_builder.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\filter_block.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\format.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\iterator_wrapper.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\merger.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\table\two_level_iterator.h">
+      <Filter>src\leveldb\table</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\arena.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\coding.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\crc32c.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\env_windows_test_helper.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\hash.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\logging.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\mutexlock.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\no_destructor.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\random.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\leveldb\util\windows_logger.h">
+      <Filter>src\leveldb\util</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\snappy\config.h">
+      <Filter>src\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\snappy\snappy-internal.h">
+      <Filter>src\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\github\stonks\src\snappy\snappy-stubs-internal.h">
+      <Filter>src\snappy</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InParser.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stonks.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\github\stonks\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{98566B01-629D-3EA0-8416-F16CB96FE1EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{3715DFBB-A56A-3765-9106-4271C92FC64A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\leveldb">
+      <UniqueIdentifier>{BE1A5CBB-9CA4-330D-BAF7-3A0B15E03AAB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{5E00894F-C1E5-3EA7-A4CD-8FB3E1F91A47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\leveldb">
+      <UniqueIdentifier>{CB7E9B24-7437-3F4A-8352-3186B2EE06B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\leveldb\db">
+      <UniqueIdentifier>{86DC5E71-86A3-3E42-A71D-65D752E37F53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\leveldb\port">
+      <UniqueIdentifier>{3CA7A0C2-A548-39E7-AA84-E2D1B6CF8E26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\leveldb\table">
+      <UniqueIdentifier>{5697268C-D02D-3AD8-AB78-3F3978412369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\leveldb\util">
+      <UniqueIdentifier>{1A8B9919-2A4B-3A89-B534-D086F661CCBD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\snappy">
+      <UniqueIdentifier>{97FB2C63-3508-3AC8-9F2D-EE05AB83DEC0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
