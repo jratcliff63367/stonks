@@ -5,11 +5,13 @@
 
 #include "leveldb/db.h"
 #include "stonks.h"
+#include "KeyValueDatabase.h"
 
 static const double billion = 1000000000;
 
 int main(int /* argc */,const char ** /* argv */)
 {
+	keyvaluedatabase::KeyValueDatabase *kvdb = keyvaluedatabase::KeyValueDatabase::create();
 
 	stonks::Stonks *s = stonks::Stonks::create();
 
@@ -31,6 +33,7 @@ int main(int /* argc */,const char ** /* argv */)
 	printf("%d stocks match.\n", matchCount);
 
 	s->release();
+	kvdb->release();
 
 	return 0;
 }

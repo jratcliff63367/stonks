@@ -130,6 +130,9 @@
     <ClCompile Include="src\stonks.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\KeyValueDatabase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h">
@@ -295,6 +298,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\stonks.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\KeyValueDatabase.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

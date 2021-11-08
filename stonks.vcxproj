@@ -321,6 +321,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\InParser.cpp" />
+    <ClCompile Include="src\KeyValueDatabase.cpp" />
     <ClCompile Include="src\stonks.cpp" />
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\cache.h" />
@@ -417,6 +418,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\github\stonks\src\snappy\snappy.cc" />
     <ClCompile Include="D:\github\stonks\app\main.cpp" />
     <ClInclude Include="include\InParser.h" />
+    <ClInclude Include="include\KeyValueDatabase.h" />
     <ClInclude Include="include\stonks.h" />
   </ItemGroup>
   <ItemGroup>
