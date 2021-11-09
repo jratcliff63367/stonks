@@ -320,6 +320,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Commands.cpp" />
     <ClCompile Include="src\InParser.cpp" />
     <ClCompile Include="src\KeyValueDatabase.cpp" />
     <ClCompile Include="src\stonks.cpp" />
@@ -417,6 +418,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\github\stonks\src\snappy\snappy-stubs-internal.h" />
     <ClCompile Include="D:\github\stonks\src\snappy\snappy.cc" />
     <ClCompile Include="D:\github\stonks\app\main.cpp" />
+    <ClInclude Include="include\Commands.h" />
+    <ClInclude Include="include\GetArgs.h" />
     <ClInclude Include="include\InParser.h" />
     <ClInclude Include="include\KeyValueDatabase.h" />
     <ClInclude Include="include\stonks.h" />

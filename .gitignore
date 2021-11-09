@@ -51,3 +51,6 @@
 /stonks.dir/Debug
 /x64/Debug/ZERO_CHECK
 /.vs/stonks/v16
+/include/*.bak
+/x64/Release/ZERO_CHECK
+/stonks.dir/Release

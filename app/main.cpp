@@ -6,11 +6,20 @@
 #include "leveldb/db.h"
 #include "stonks.h"
 #include "KeyValueDatabase.h"
+#include "Commands.h"
 
 static const double billion = 1000000000;
 
 int main(int /* argc */,const char ** /* argv */)
 {
+#if 1
+	commands::Commands *c = commands::Commands::create();
+	while ( !c->pump() )
+	{
+	}
+	c->release();
+
+#else
 	keyvaluedatabase::KeyValueDatabase *kvdb = keyvaluedatabase::KeyValueDatabase::create();
 
 	stonks::Stonks *s = stonks::Stonks::create();
@@ -34,6 +43,7 @@ int main(int /* argc */,const char ** /* argv */)
 
 	s->release();
 	kvdb->release();
+#endif
 
 	return 0;
 }
