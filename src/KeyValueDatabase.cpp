@@ -16,14 +16,16 @@ public:
 		leveldb::DB* db;
 		leveldb::Options options;
 		options.create_if_missing = true;
-		leveldb::Status status = leveldb::DB::Open(options, "C:\\Users\\jratc\\PycharmProjects\\TestProject\\stock-market", &db);
+		leveldb::Status status = leveldb::DB::Open(options, "d:\\github\\stonks\\stock-market", &db);
 		assert(status.ok());
 
 		leveldb::Iterator* it = db->NewIterator(leveldb::ReadOptions());
 		for (it->SeekToFirst(); it->Valid(); it->Next()) 
 		{
-			printf("%s : %s\n", it->key().ToString().c_str(), 
-				                it->value().ToString().c_str());
+//			printf("%s : %s\n", it->key().ToString().c_str(), 
+//				                it->value().ToString().c_str());
+
+			printf("%s\n", it->key().ToString().c_str());
 		}
 		assert(it->status().ok());  // Check for any errors found during the scan
 		delete it;

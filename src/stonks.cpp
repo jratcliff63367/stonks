@@ -1,5 +1,6 @@
 #include "stonks.h"
 #include "InParser.h"
+#include "rapidjson/rapidjson.h"
 #include <map>
 
 namespace stonks

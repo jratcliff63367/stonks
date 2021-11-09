@@ -1,19 +1,32 @@
 #include "Commands.h"
 #include "GetArgs.h"
+#include "KeyValueDatabase.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream> 
 #include <string> 
 
+#include <unordered_map>
+
 namespace commands
 {
+
+using CommandTypeMap = std::unordered_map< std::string, CommandType >;
 
 class CommandsImpl : public Commands
 {
 public:
 	CommandsImpl(void)
 	{
+		mCommands["create"] = CommandType::create;
+		mCommands["remove"] = CommandType::remove;
+		mCommands["delete"] = CommandType::_delete;
+		mCommands["show"] = CommandType::show;
+		mCommands["account"] = CommandType::account;
+		mCommands["help"] = CommandType::help;
+		mCommands["bye"] = CommandType::bye;
+		mCommands["tickers"] = CommandType::tickers;
 	}
 
 	virtual ~CommandsImpl(void)
@@ -49,18 +62,27 @@ public:
 
 		if ( argc >= 1 )
 		{
-			const char *cmd = argv[0];
-			if ( strcmp(cmd,"bye") == 0 )
+			CommandType c = getCommandType(argv[0]);
+			switch ( c )
 			{
-				ret = true;
-			}
-			else if ( strcmp(cmd,"help") == 0 )
-			{
-				printf("There is no help for you.\n");
-			}
-			else
-			{
-				printf("Unknown command: %s\n", cmd );
+				case CommandType::bye:
+					ret = true;
+					break;
+				case CommandType::help:
+					printf("There is no help for you.\n");
+					break;
+				case CommandType::last:
+					printf("Unknown command: %s\n", argv[0]);
+					break;
+				case CommandType::tickers:
+					{
+						keyvaluedatabase::KeyValueDatabase *kvdb = keyvaluedatabase::KeyValueDatabase::create();
+						kvdb->release();
+					}
+					break;
+				default:
+					printf("Command: %s not yet implemented.\n", argv[0]);
+					break;
 			}
 		}
 
@@ -72,7 +94,20 @@ public:
 		delete this;
 	}
 
+	virtual CommandType getCommandType(const char *str) const final
+	{
+		CommandType ret = CommandType::last;
 
+		CommandTypeMap::const_iterator found = mCommands.find(std::string(str));
+		if ( found != mCommands.end() )
+		{
+			ret = (*found).second;
+		}
+
+		return ret;
+	}
+
+	CommandTypeMap mCommands;
 };
 
 Commands *Commands::create(void)
