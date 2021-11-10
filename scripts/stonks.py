@@ -7,6 +7,7 @@ import requests
 import pandas as pd
 import json
 import plyvel
+import time
 
 # --------------- GLOBAL PREFERENCES ---------------------- #
 API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
@@ -16,7 +17,7 @@ nasdaq_csv = False
 company_overview = True
 # --------------------------------------------------------- #
 
-csv_location = 'd:\\tickers.csv'
+csv_location = 'd:\\github\\stonks\\tickers.csv'
 db_dir = 'd:\\github\\stonks\\stock-market'
 
 
@@ -34,14 +35,13 @@ def upload_csv(csv_file):
 def get_historical_quotes(tickers_csv_file, db):
     for ticker in tickers_csv_file:
 
-
+        time.sleep(0.1)
         stock_id = 'price' + '.' + ticker;
         stock_key = bytes(stock_id, encoding='utf-8')
         stock_value = bytes(ticker, encoding='utf-8')
         if db.get(stock_key):
             print(f'Skipping stock {ticker} data already found.')
         else:
-            db.put(stock_key,stock_value)
             url = "https://alpha-vantage.p.rapidapi.com/query"
 
             querystring = {"function": "TIME_SERIES_DAILY_ADJUSTED", "symbol": ticker, "datatype": "json",
@@ -51,13 +51,14 @@ def get_historical_quotes(tickers_csv_file, db):
                 'x-rapidapi-host': "alpha-vantage.p.rapidapi.com",
                 'x-rapidapi-key': f"{API_KEY}"
             }
-            print(f'Requesting historical price data for {ticker}')
+            #print(f'Requesting historical price data for {ticker}')
             response = requests.request("GET", url, headers=headers, params=querystring)
             data = response.json()
 
             try:
                 stock_keys_list = list(data['Time Series (Daily)'].keys())
                 print(f'Saving historical price data for {ticker}')
+                db.put(stock_key,stock_value)
                 for date_key in stock_keys_list:
                     stock_date = date_key
                     stock_open_price = str(data['Time Series (Daily)'][date_key]['1. open'])
@@ -67,11 +68,13 @@ def get_historical_quotes(tickers_csv_file, db):
                     bvalue = bytes(stock_open_price, encoding='utf-8')
                     db.put(bkey, bvalue)
             except Exception as e:
-                print(f'Error accessing the time series for ticker {ticker}. Skipping it.')
+                jsonstring = json.dumps(data)
+                print(f'Error({jsonstring}) accessing the time series for ticker {ticker}. Skipping it.')
 
 
 def get_fundamentals(tickers_csv_file, db):
     for ticker in tickers_csv_file:
+        time.sleep(0.02)
         url = "https://alpha-vantage.p.rapidapi.com/query"
 
         querystring = {"function": "OVERVIEW", "symbol": ticker, "datatype": "json",
