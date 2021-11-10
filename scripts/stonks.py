@@ -31,23 +31,43 @@ def upload_csv(csv_file):
 
 
 # gets entire available data history at AV
-def get_historical_quotes(tickers_csv_file):
-    price_data = []
+def get_historical_quotes(tickers_csv_file, db):
     for ticker in tickers_csv_file:
-        url = "https://alpha-vantage.p.rapidapi.com/query"
 
-        querystring = {"function": "TIME_SERIES_DAILY_ADJUSTED", "symbol": ticker, "datatype": "json",
-                       "outputsize": "full"}
 
-        headers = {
-            'x-rapidapi-host': "alpha-vantage.p.rapidapi.com",
-            'x-rapidapi-key': f"{API_KEY}"
-        }
-        print(f'Requesting historical price data for {ticker}')
-        response = requests.request("GET", url, headers=headers, params=querystring)
-        data = response.json()
-        price_data.append(data)
-    return price_data
+        stock_id = 'price' + '.' + ticker;
+        stock_key = bytes(stock_id, encoding='utf-8')
+        stock_value = bytes(ticker, encoding='utf-8')
+        if db.get(stock_key):
+            print(f'Skipping stock {ticker} data already found.')
+        else:
+            db.put(stock_key,stock_value)
+            url = "https://alpha-vantage.p.rapidapi.com/query"
+
+            querystring = {"function": "TIME_SERIES_DAILY_ADJUSTED", "symbol": ticker, "datatype": "json",
+                        "outputsize": "full"}
+
+            headers = {
+                'x-rapidapi-host': "alpha-vantage.p.rapidapi.com",
+                'x-rapidapi-key': f"{API_KEY}"
+            }
+            print(f'Requesting historical price data for {ticker}')
+            response = requests.request("GET", url, headers=headers, params=querystring)
+            data = response.json()
+
+            try:
+                stock_keys_list = list(data['Time Series (Daily)'].keys())
+                print(f'Saving historical price data for {ticker}')
+                for date_key in stock_keys_list:
+                    stock_date = date_key
+                    stock_open_price = str(data['Time Series (Daily)'][date_key]['1. open'])
+                    stock_identifier = 'price' + '.' + ticker + '.' + stock_date
+                    #print(f'Key({stock_identifier}) Value({stock_open_price})')
+                    bkey = bytes(stock_identifier, encoding='utf-8')
+                    bvalue = bytes(stock_open_price, encoding='utf-8')
+                    db.put(bkey, bvalue)
+            except Exception as e:
+                print(f'Error accessing the time series for ticker {ticker}. Skipping it.')
 
 
 def get_fundamentals(tickers_csv_file, db):
@@ -72,21 +92,6 @@ def get_fundamentals(tickers_csv_file, db):
         db.put(bkey,bvalue)
 
 
-def organize_data_historical(tickers_csv_file,db):
-    historical_quote_data = get_historical_quotes(tickers_csv_file)
-    for stock in historical_quote_data:
-        stock_symbol = stock['Meta Data']['2. Symbol']
-        stock_keys_list = list(stock['Time Series (Daily)'].keys())
-        for date_key in stock_keys_list:
-            stock_date = date_key
-            stock_open_price = str(stock['Time Series (Daily)'][date_key]['1. open'])
-            stock_identifier = 'price' + '.' + stock_symbol + '.' + stock_date
-            print(f'Key({stock_identifier}) Value({stock_open_price})')
-            bkey = bytes(stock_identifier, encoding='utf-8')
-            bvalue = bytes(stock_open_price, encoding='utf-8')
-            db.put(bkey,bvalue)
-
-
 
 if __name__ == "__main__":
     # daily run
@@ -97,7 +102,7 @@ if __name__ == "__main__":
 
     # historical run for the entire price history
     if historical_data:
-        organize_data_historical(sorted_df_sliced,db)
+        get_historical_quotes(sorted_df_sliced, db)
 
     if company_overview:
         get_fundamentals(sorted_df_sliced, db)
