@@ -27,6 +27,8 @@ public:
 		mCommands["help"] = CommandType::help;
 		mCommands["bye"] = CommandType::bye;
 		mCommands["tickers"] = CommandType::tickers;
+		mCommands["backup"] = CommandType::backup;
+		mCommands["restore"] = CommandType::restore;
 		mStonks = stonks::Stonks::create();
 	}
 
@@ -79,7 +81,8 @@ public:
 				case CommandType::last:
 					printf("Unknown command: %s\n", argv[0]);
 					break;
-				case CommandType::tickers:
+				case CommandType::backup:
+					mStonks->backup();
 					break;
 				default:
 					printf("Command: %s not yet implemented.\n", argv[0]);

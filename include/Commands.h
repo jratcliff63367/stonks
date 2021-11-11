@@ -15,6 +15,8 @@ enum class CommandType : uint32_t
 	help,
 	bye,
 	tickers,
+	backup,
+	restore,
 	last
 };
 

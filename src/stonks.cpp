@@ -1,6 +1,7 @@
 #include "stonks.h"
 #include "KeyValueDatabase.h"
 #include "rapidjson/rapidjson.h"
+#include "rapidjson/document.h"
 
 #include <map>
 #include <vector>
@@ -14,14 +15,14 @@ using StocksMap = std::map< std::string, Stock >;
 using DateToIndex = std::map< std::string, uint32_t >;
 using IndexToDate = std::map< uint32_t, std::string>;
 using PriceHistory = std::vector< Price >;
-using PriceHistoryMap = std::map< std::string, PriceHistory >;
 
 class StonksImpl : public Stonks
 {
 public:
 	StonksImpl(void)
 	{
-		auto database = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stock-market");
+		//auto database = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stock-market");
+		auto database = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stonks");
 		assert(database);
 		if ( database )
 		{
@@ -72,6 +73,11 @@ public:
 						}
 						else
 						{
+							Stock s;
+							s.mSymbol = std::string(ticker);
+							s.mJSON = value;
+							parseStock(s);
+							mStocks[s.mSymbol] = s;
 							tickers.push_back(std::string(ticker));
 						}
 					}
@@ -209,9 +215,135 @@ public:
 					}
 				}
 			}
-			mPriceHistoryMap[std::string(ticker)] = phistory;
+			std::string sticker(ticker);
+			StocksMap::iterator found =  mStocks.find(sticker);
+			if ( found != mStocks.end() )
+			{
+				(*found).second.mHistory = phistory;
+			}
+			else
+			{
+				assert(0);
+			}
 		}
 		printf("Found %d price dates for ticker %s.\n", ret, ticker);
+
+		return ret;
+	}
+
+	virtual void backup(void) final
+	{
+		FILE *fph = fopen("d:\\github\\stonks\\backup\\tickers.csv","wb");
+		if ( fph )
+		{
+			printf("Saving stock tickers.\n");
+			for (auto &i:mStocks)
+			{
+				auto &stock = i.first;
+				fprintf(fph,"%s\n", stock.c_str());
+			}
+			fclose(fph);
+		}
+		else
+		{
+			assert(0);
+		}
+
+		for (auto &i:mStocks)
+		{
+			auto &stock = i.second;
+			char scratch[512];
+			snprintf(scratch,sizeof(scratch),"d:\\github\\stonks\\backup\\ticker.%s.json", i.first.c_str());
+			FILE *json = fopen(scratch,"wb");
+			if ( json )
+			{
+				printf("Saving stock data:%s\n", scratch);
+				fwrite(stock.mJSON.c_str(),stock.mJSON.size(),1,json);
+				fclose(json);
+			}
+			else
+			{
+				assert(0);
+			}
+			snprintf(scratch,sizeof(scratch),"d:\\github\\stonks\\backup\\price.%s.csv", i.first.c_str());
+			FILE *price = fopen(scratch,"wb");
+			if ( price )
+			{
+				printf("Saving Price History:%s\n", scratch);
+				for (auto &j:stock.mHistory)
+				{
+					fprintf(price,"%s,%0.2f\n", j.mDate.c_str(), j.mPrice);
+				}
+				fclose(price);
+			}
+			else
+			{
+				assert(0);
+			}
+		}
+		printf("Backup complete.\n");
+	}
+
+	virtual void restore(void) final
+	{
+	}
+
+#define GET_STRING(n,m) if ( document.HasMember(n) ) m = document[n].GetString(); else assert(0);
+#define GET_DOUBLE(n,m) if ( document.HasMember(n) ) { const char *str = document[n].GetString(); m = atof(str); } else assert(0);
+
+	bool parseStock(Stock &s)
+	{
+		bool ret = false;
+
+		rapidjson::Document document;
+		document.Parse(s.mJSON.c_str());
+
+		GET_STRING("Symbol",s.mSymbol);
+   		GET_STRING("AssetType",s.mAssetType);
+   		GET_STRING("Name",s.mName);
+   		GET_STRING("Description",s.mDescription);
+   		GET_STRING("CIK",s.mCIK);
+   		GET_STRING("Exchange",s.mExchange);
+   		GET_STRING("Currency",s.mCurrency);
+   		GET_STRING("Country",s.mCountry);
+   		GET_STRING("Sector",s.mSector);
+   		GET_STRING("Industry",s.mIndustry);
+   		GET_STRING("Address",s.mAddress);
+   		GET_STRING("FiscalYearEnd",s.mFiscalYearEnd);
+   		GET_STRING("LatestQuarter",s.mLatestQuarter);
+   		GET_DOUBLE("MarketCapitalization",s.mMarketCapitalization);
+   		GET_DOUBLE("EBITDA",s.mEBITDA);
+   		GET_DOUBLE("PERatio",s.mPERatio);
+   		GET_DOUBLE("PEGRatio",s.mPEGRatio);
+   		GET_DOUBLE("BookValue",s.mBookValue);
+   		GET_DOUBLE("DividendPerShare",s.mDividendPerShare);
+   		GET_DOUBLE("DividendYield",s.mDividendYield);
+   		GET_DOUBLE("EPS",s.mEPS);
+   		GET_DOUBLE("RevenuePerShareTTM",s.mRevenuePerShareTTM);
+   		GET_DOUBLE("ProfitMargin",s.mProfitMargin);
+   		GET_DOUBLE("OperatingMarginTTM",s.mOperatingMarginTTM);
+   		GET_DOUBLE("ReturnOnAssetsTTM",s.mReturnOnAssetsTTM);
+   		GET_DOUBLE("ReturnOnEquityTTM",s.mReturnOnEquityTTM);
+   		GET_DOUBLE("RevenueTTM",s.mRevenueTTM);
+   		GET_DOUBLE("GrossProfitTTM",s.mGrossProfitTTM);
+   		GET_DOUBLE("DilutedEPSTTM",s.mDilutedEPSTTM);
+   		GET_DOUBLE("QuarterlyEarningsGrowthYOY",s.mQuarterlyEarningsGrowthYOY);
+   		GET_DOUBLE("QuarterlyRevenueGrowthYOY",s.mQuarterlyRevenueGrowthYOY);
+   		GET_DOUBLE("AnalystTargetPrice",s.mAnalystTargetPrice);
+   		GET_DOUBLE("TrailingPE",s.mTrailingPE);
+   		GET_DOUBLE("ForwardPE",s.mForwardPE);
+   		GET_DOUBLE("PriceToSalesRatioTTM",s.mPriceToSalesRatioTTM);
+   		GET_DOUBLE("PriceToBookRatio",s.mPriceToBookRatio);
+   		GET_DOUBLE("EVToRevenue",s.mEVToRevenue);
+   		GET_DOUBLE("EVToEBITDA",s.mEVToEBITDA);
+   		GET_DOUBLE("Beta",s.mBeta);
+   		GET_DOUBLE("52WeekHigh",s.m52WeekHigh);
+   		GET_DOUBLE("52WeekLow",s.m52WeekLow);
+   		GET_DOUBLE("50DayMovingAverage",s.m50DayMovingAverage);
+   		GET_DOUBLE("200DayMovingAverage",s.m200DayMovingAverage);
+   		GET_DOUBLE("SharesOutstanding",s.mSharesOutstanding);
+   		GET_STRING("DividendDate",s.mDividendDate);
+   		GET_STRING("ExDividendDate",s.mExDividendDate);
 
 		return ret;
 	}
@@ -220,8 +352,6 @@ public:
 	StocksMap	mStocks;
 	DateToIndex	mDateToIndex;
 	IndexToDate mIndexToDate;
-	PriceHistoryMap	mPriceHistoryMap;
-
 };
 
 Stonks *Stonks::create(void)

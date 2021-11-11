@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <stdint.h>
 
 namespace stonks
@@ -9,22 +10,65 @@ namespace stonks
 class Price
 {
 public:
-	double	mPrice{0};
-	std::string mDate;
-	uint32_t	mDateIndex{0};
+	double		mPrice{0};		// The price on this date
+	std::string mDate;			// The date as a string
+	uint32_t	mDateIndex{0};	// The date-index
 };
+
+using PriceHistory = std::vector< Price >;
+
 
 class Stock
 {
 public:
-	std::string	mSymbol;
-	std::string mName;
-	double 	mMarketCap{0};
-	std::string	mCountry;
-	uint32_t	mIPOYear{0};
-	uint32_t	mVolume{0};
-	std::string	mSector;
-	std::string	mIndustry;
+	std::string		mSymbol;	// The stock symbol
+	std::string		mAssetType;
+	std::string		mName;
+	std::string		mDescription;
+	std::string		mCIK;
+	std::string		mExchange;
+	std::string		mCurrency;
+	std::string		mCountry;
+	std::string		mSector;
+	std::string		mIndustry;
+	std::string		mAddress;
+	std::string		mFiscalYearEnd;
+	std::string		mLatestQuarter;
+	double			mMarketCapitalization{0};
+	double			mEBITDA{0};
+	double			mPERatio{0};
+	double			mPEGRatio{0};
+	double			mBookValue{0};
+	double			mDividendPerShare{0};
+	double			mDividendYield{0};
+	double			mEPS{0};
+	double			mRevenuePerShareTTM{0};
+	double			mProfitMargin{0};
+	double			mOperatingMarginTTM{0};
+	double			mReturnOnAssetsTTM{0};
+	double			mReturnOnEquityTTM{0};
+	double			mRevenueTTM{0};
+	double			mGrossProfitTTM{0};
+	double			mDilutedEPSTTM{0};
+	double			mQuarterlyEarningsGrowthYOY{0};
+	double			mQuarterlyRevenueGrowthYOY{0};
+	double			mAnalystTargetPrice{0};
+	double			mTrailingPE{0};
+	double			mForwardPE{0};
+	double			mPriceToSalesRatioTTM{0};
+	double			mPriceToBookRatio{0};
+	double			mEVToRevenue{0};
+	double			mEVToEBITDA{0};
+	double			mBeta{0};
+	double			m52WeekHigh{0};
+	double			m52WeekLow{0};
+	double			m50DayMovingAverage{0};
+	double			m200DayMovingAverage{0};
+	double			mSharesOutstanding{0};
+	std::string		mDividendDate;
+	std::string		mExDividendDate;
+	std::string		mJSON;		// The JSON data which desribes this stock
+	PriceHistory	mHistory;	// The price history of this stock
 };
 
 class Stonks
@@ -39,6 +83,9 @@ public:
 
 	virtual uint32_t begin(void) = 0; // begin iterating stock symbols, returns the number available.
 	virtual const Stock *next(void) = 0; // goes to the next
+
+	virtual void backup(void) = 0;
+	virtual void restore(void) = 0;
 
 	virtual void release(void) = 0;
 protected:
