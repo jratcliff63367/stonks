@@ -13,12 +13,17 @@ namespace keyvaluedatabase
 class KeyValueDatabaseImpl : public KeyValueDatabase
 {
 public:
-	KeyValueDatabaseImpl(void)
+	KeyValueDatabaseImpl(const char *databaseLocation)
 	{
 		leveldb::Options options;
 		options.create_if_missing = true;
-		leveldb::Status status = leveldb::DB::Open(options, "d:\\github\\stonks\\stock-market", &mDatabase);
-		assert(status.ok());
+		leveldb::Status status = leveldb::DB::Open(options, databaseLocation, &mDatabase);
+		if ( !status.ok() )
+		{
+			printf("Failed to open database(%s)\n", databaseLocation);
+			delete mDatabase;
+			mDatabase = nullptr;
+		}
 	}
 
 	virtual ~KeyValueDatabaseImpl(void)
@@ -73,6 +78,7 @@ public:
 		{
 			key = mIterator->key().ToString();
 			value = mIterator->value().ToString();
+			ret = true;
 			mIterator->Next();
 			if ( mIterator->Valid() && mPrefix.size() )
 			{
@@ -81,10 +87,9 @@ public:
 				{
 					delete mIterator;
 					mIterator = nullptr;
+					ret = false;
 				}
 			}
-
-			ret = true;
 		}
 
 		return ret;
@@ -96,14 +101,24 @@ public:
 		delete this;
 	}
 
+	bool isValid(void) const
+	{
+		return mDatabase ? true :false;
+	}
+
 	std::string			mPrefix;
 	leveldb::DB 		*mDatabase{nullptr};
 	leveldb::Iterator	*mIterator{nullptr};
 };
 
-KeyValueDatabase *KeyValueDatabase::create(void)
+KeyValueDatabase *KeyValueDatabase::create(const char *databaseLocation)
 {
-	auto ret = new KeyValueDatabaseImpl;
+	auto ret = new KeyValueDatabaseImpl(databaseLocation);
+	if ( !ret->isValid() )
+	{
+		delete ret;
+		ret = nullptr;
+	}
 	return static_cast< KeyValueDatabase *>(ret);
 }
 

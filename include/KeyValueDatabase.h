@@ -8,7 +8,7 @@ namespace keyvaluedatabase
 class KeyValueDatabase
 {
 public:
-	static KeyValueDatabase *create(void);
+	static KeyValueDatabase *create(const char *databaseLocation);
 
 	// Start iterating the database starting with a key that matches this prefix. An empty string or null pointer will start at the first key in the database
 	virtual bool begin(const char *prefix) = 0;

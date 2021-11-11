@@ -1,6 +1,6 @@
 #include "Commands.h"
 #include "GetArgs.h"
-#include "KeyValueDatabase.h"
+#include "stonks.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,10 +27,15 @@ public:
 		mCommands["help"] = CommandType::help;
 		mCommands["bye"] = CommandType::bye;
 		mCommands["tickers"] = CommandType::tickers;
+		mStonks = stonks::Stonks::create();
 	}
 
 	virtual ~CommandsImpl(void)
 	{
+		if ( mStonks )
+		{
+			mStonks->release();
+		}
 	}
 
 	virtual bool pump(void) final
@@ -75,10 +80,6 @@ public:
 					printf("Unknown command: %s\n", argv[0]);
 					break;
 				case CommandType::tickers:
-					{
-						keyvaluedatabase::KeyValueDatabase *kvdb = keyvaluedatabase::KeyValueDatabase::create();
-						kvdb->release();
-					}
 					break;
 				default:
 					printf("Command: %s not yet implemented.\n", argv[0]);
@@ -107,6 +108,7 @@ public:
 		return ret;
 	}
 
+	stonks::Stonks	*mStonks{nullptr};
 	CommandTypeMap mCommands;
 };
 

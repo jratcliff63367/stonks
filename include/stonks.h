@@ -6,6 +6,14 @@
 namespace stonks
 {
 
+class Price
+{
+public:
+	double	mPrice{0};
+	std::string mDate;
+	uint32_t	mDateIndex{0};
+};
+
 class Stock
 {
 public:
@@ -25,6 +33,9 @@ public:
 	static Stonks *create(void);
 
 	virtual const Stock *getStock(const std::string &symbol) const = 0;
+
+	virtual uint32_t dateToIndex(const char *date) const = 0;
+	virtual const char *indexToDate(uint32_t index) const = 0;
 
 	virtual uint32_t begin(void) = 0; // begin iterating stock symbols, returns the number available.
 	virtual const Stock *next(void) = 0; // goes to the next

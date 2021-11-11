@@ -1,27 +1,88 @@
 #include "stonks.h"
-#include "InParser.h"
+#include "KeyValueDatabase.h"
 #include "rapidjson/rapidjson.h"
+
 #include <map>
+#include <vector>
+#include <assert.h>
 
 namespace stonks
 {
 
-using StocksMap = std::map< std::string, Stock >;
 
-class StonksImpl : public Stonks, public IN_PARSER::InPlaceParserInterface
+using StocksMap = std::map< std::string, Stock >;
+using DateToIndex = std::map< std::string, uint32_t >;
+using IndexToDate = std::map< uint32_t, std::string>;
+using PriceHistory = std::vector< Price >;
+using PriceHistoryMap = std::map< std::string, PriceHistory >;
+
+class StonksImpl : public Stonks
 {
 public:
 	StonksImpl(void)
 	{
-		IN_PARSER::InPlaceParser ipp;
-		ipp.SetHard(',');
-		ipp.SetFile("d:\\tickers.csv");
-		ipp.ClearHardSeparator(32);
-		ipp.Parse(this);
+		mDatabase = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stock-market");
+		assert(mDatabase);
+		if ( mDatabase )
+		{
+			printf("Scanning for all valid market dates using AAPL as a baseline refrerence.\n");
+			bool ok = mDatabase->begin("price.AAPL.");
+			assert(ok);
+			while ( ok )
+			{
+				std::string key;
+				std::string value;
+				ok = mDatabase->next(key,value);
+				if ( ok )
+				{
+					const char *date = getDate(key.c_str());
+					assert(date);
+					if ( date )
+					{
+						uint32_t index = uint32_t(mDateToIndex.size())+1;
+						std::string sdate(date);
+						mDateToIndex[sdate] = index;
+						mIndexToDate[index] = sdate;
+					}
+				}
+			}
+			printf("Processed %d unique market dates.\n", uint32_t(mDateToIndex.size()));
+		}
+		if ( mDatabase )
+		{
+			printf("Reading price data for all tickers.\n");
+			bool ok = mDatabase->begin("ticker.");
+			assert(ok);
+			std::vector< std::string > tickers;
+			while ( ok )
+			{
+				std::string key;
+				std::string value;
+				ok = mDatabase->next(key,value);
+				if ( ok )
+				{
+					const char *ticker = strchr(key.c_str(),'.');
+					assert(ticker);
+					if ( ticker )
+					{
+						ticker++;
+						tickers.push_back(std::string(ticker));
+					}
+				}
+			}
+			for (auto &i:tickers)
+			{
+				readPriceHistory(i.c_str());
+			}
+		}
 	}
 
 	virtual ~StonksImpl(void)
 	{
+		if ( mDatabase )
+		{
+			mDatabase->release();
+		}
 	}
 
 	virtual const Stock *getStock(const std::string &symbol) const final
@@ -41,44 +102,6 @@ public:
 		delete this;
 	}
 
-	virtual uint32_t ParseLine(uint32_t lineno, uint32_t argc, const char **argv)   // return TRUE to continue parsing, return FALSE to abort parsing process
-	{
-		uint32_t ret = 0;
-
-		if ( lineno == 1 )
-		{
-		}
-		else
-		{
-			if ( argc == 21 )
-			{
-				const char *symbol = argv[0];
-				const char *name = argv[2];
-				const char *marketCap = argv[10];
-				const char *country = argv[12];
-				const char *ipoYear = argv[14];
-				const char *volume = argv[16];
-				const char *sector = argv[18];
-				const char *industry = argv[20];
-
-				Stock s;
-				s.mSymbol = std::string(symbol);
-				s.mName = std::string(name);
-				s.mMarketCap = atof(marketCap);
-				s.mCountry = std::string(country);
-				s.mIPOYear = atoi(ipoYear);
-				s.mVolume = atoi(volume);
-				s.mSector = std::string(sector);
-				s.mIndustry = std::string(industry);
-
-				mStocks[s.mSymbol] = s;
-
-			}
-		}
-
-		return ret;
-	}
-
 	virtual uint32_t begin(void) final // begin iterating stock symbols, returns the number available.
 	{
 		mIterator = mStocks.begin();
@@ -96,9 +119,105 @@ public:
 		return ret;
 	}
 
+	const char *getDate(const char *scan) const
+	{
+		const char *ret = nullptr;
+
+		scan = strchr(scan,'.');
+		assert(scan);
+		if ( scan )
+		{
+			scan = strchr(scan+1,'.');
+			assert(scan);
+			if ( scan )
+			{
+				ret = scan+1;
+			}
+		}
+
+
+		return ret;
+	}
+
+	virtual uint32_t dateToIndex(const char *date) const final
+	{
+		uint32_t ret = 0;
+
+		if ( date )
+		{
+			DateToIndex::const_iterator found = mDateToIndex.find(std::string(date));
+			if ( found != mDateToIndex.end() )
+			{
+				ret = (*found).second;
+			}
+		}
+
+		return ret;
+	}
+
+	virtual const char *indexToDate(uint32_t index) const final
+	{
+		const char *ret = nullptr;
+
+		IndexToDate::const_iterator found = mIndexToDate.find(index);
+		if ( found != mIndexToDate.end() )
+		{
+			ret = (*found).second.c_str();
+		}
+
+		return ret;
+	}
+
+	uint32_t readPriceHistory(const char *ticker)
+	{
+		uint32_t ret = 0;
+
+		std::string skipKey = "price." + std::string(ticker);
+		std::string prefix = skipKey + std::string(".");
+		bool ok = mDatabase->begin(prefix.c_str());
+		assert(ok);
+		if ( ok )
+		{
+			PriceHistory phistory;
+			while ( ok )
+			{
+				std::string key;
+				std::string value;
+				ok = mDatabase->next(key,value);
+				if ( ok )
+				{
+					Price p;
+					p.mPrice = atof(value.c_str());
+					if ( key == skipKey )
+					{
+					}
+					else
+					{
+						const char *date = getDate(key.c_str());
+						if ( date )
+						{
+							p.mDate = std::string(date);
+							p.mDateIndex = dateToIndex(date);
+							assert(p.mDateIndex);
+							phistory.push_back(p);
+							ret++;
+						}
+					}
+				}
+			}
+			mPriceHistoryMap[std::string(ticker)] = phistory;
+		}
+		printf("Found %d price dates for ticker %s.\n", ret, ticker);
+
+		return ret;
+	}
 
 	StocksMap::iterator mIterator;
 	StocksMap	mStocks;
+	keyvaluedatabase::KeyValueDatabase *mDatabase{nullptr};
+	DateToIndex	mDateToIndex;
+	IndexToDate mIndexToDate;
+	PriceHistoryMap	mPriceHistoryMap;
 
 };
 
