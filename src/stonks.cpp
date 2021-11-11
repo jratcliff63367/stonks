@@ -21,18 +21,18 @@ class StonksImpl : public Stonks
 public:
 	StonksImpl(void)
 	{
-		mDatabase = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stock-market");
-		assert(mDatabase);
-		if ( mDatabase )
+		auto database = keyvaluedatabase::KeyValueDatabase::create("d:\\github\\stonks\\stock-market");
+		assert(database);
+		if ( database )
 		{
 			printf("Scanning for all valid market dates using AAPL as a baseline refrerence.\n");
-			bool ok = mDatabase->begin("price.AAPL.");
+			bool ok = database->begin("price.AAPL.");
 			assert(ok);
 			while ( ok )
 			{
 				std::string key;
 				std::string value;
-				ok = mDatabase->next(key,value);
+				ok = database->next(key,value);
 				if ( ok )
 				{
 					const char *date = getDate(key.c_str());
@@ -48,17 +48,17 @@ public:
 			}
 			printf("Processed %d unique market dates.\n", uint32_t(mDateToIndex.size()));
 		}
-		if ( mDatabase )
+		if ( database )
 		{
 			printf("Reading price data for all tickers.\n");
-			bool ok = mDatabase->begin("ticker.");
+			bool ok = database->begin("ticker.");
 			assert(ok);
 			std::vector< std::string > tickers;
 			while ( ok )
 			{
 				std::string key;
 				std::string value;
-				ok = mDatabase->next(key,value);
+				ok = database->next(key,value);
 				if ( ok )
 				{
 					const char *ticker = strchr(key.c_str(),'.');
@@ -66,23 +66,27 @@ public:
 					if ( ticker )
 					{
 						ticker++;
-						tickers.push_back(std::string(ticker));
+						if ( strcmp(value.c_str(),"no_price") == 0 )
+						{
+							printf("Skipping ticker(%s) with no valid price data.\n", ticker );
+						}
+						else
+						{
+							tickers.push_back(std::string(ticker));
+						}
 					}
 				}
 			}
 			for (auto &i:tickers)
 			{
-				readPriceHistory(i.c_str());
+				readPriceHistory(i.c_str(),database);
 			}
+			database->release();
 		}
 	}
 
 	virtual ~StonksImpl(void)
 	{
-		if ( mDatabase )
-		{
-			mDatabase->release();
-		}
 	}
 
 	virtual const Stock *getStock(const std::string &symbol) const final
@@ -168,13 +172,13 @@ public:
 		return ret;
 	}
 
-	uint32_t readPriceHistory(const char *ticker)
+	uint32_t readPriceHistory(const char *ticker,keyvaluedatabase::KeyValueDatabase *database)
 	{
 		uint32_t ret = 0;
 
 		std::string skipKey = "price." + std::string(ticker);
 		std::string prefix = skipKey + std::string(".");
-		bool ok = mDatabase->begin(prefix.c_str());
+		bool ok = database->begin(prefix.c_str());
 		assert(ok);
 		if ( ok )
 		{
@@ -183,7 +187,7 @@ public:
 			{
 				std::string key;
 				std::string value;
-				ok = mDatabase->next(key,value);
+				ok = database->next(key,value);
 				if ( ok )
 				{
 					Price p;
@@ -214,7 +218,6 @@ public:
 
 	StocksMap::iterator mIterator;
 	StocksMap	mStocks;
-	keyvaluedatabase::KeyValueDatabase *mDatabase{nullptr};
 	DateToIndex	mDateToIndex;
 	IndexToDate mIndexToDate;
 	PriceHistoryMap	mPriceHistoryMap;

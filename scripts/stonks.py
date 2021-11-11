@@ -10,7 +10,7 @@ import plyvel
 import time
 
 # How long to sleep between each request
-sleep_time = 1 
+sleep_time = 0.9
 
 # --------------- GLOBAL PREFERENCES ---------------------- #
 API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
@@ -86,7 +86,7 @@ def get_fundamentals(tickers_csv_file, db):
         ticker_symbol = 'ticker.' + ticker;
         bkey = bytes(ticker_symbol, encoding='utf-8')
         if db.get(bkey):
-            print(f'Skipping stock {ticker} because it already has a record.')
+            print(f'Skipping {ticker} we already have data for it')
         else:
             time.sleep(sleep_time)
             url = "https://alpha-vantage.p.rapidapi.com/query"
