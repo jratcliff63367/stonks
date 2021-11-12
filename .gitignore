@@ -55,3 +55,7 @@
 /x64/Release/ZERO_CHECK
 /stonks.dir/Release
 /src/*.bak
+/backup
+/CMakeCache.txt
+/stock-market
+/stonks

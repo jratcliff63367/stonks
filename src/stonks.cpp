@@ -70,7 +70,7 @@ public:
 						ticker++;
 						if ( strcmp(value.c_str(),"no_price") == 0 )
 						{
-							printf("Skipping ticker(%s) with no valid price data.\n", ticker );
+							//printf("Skipping ticker(%s) with no valid price data.\n", ticker );
 						}
 						else
 						{
@@ -209,9 +209,16 @@ public:
 						{
 							p.mDate = std::string(date);
 							p.mDateIndex = dateToIndex(date);
-							assert(p.mDateIndex);
-							phistory.push_back(p);
-							ret++;
+							if ( p.mDateIndex )
+							{
+								assert(p.mDateIndex);
+								phistory.push_back(p);
+								ret++;
+							}
+							else
+							{
+								//printf("Unable to resolve date:%s\n", date );
+							}
 						}
 					}
 				}
@@ -227,7 +234,7 @@ public:
 				assert(0);
 			}
 		}
-		printf("Found %d price dates for ticker %s.\n", ret, ticker);
+		//printf("Found %d price dates for ticker %s.\n", ret, ticker);
 
 		return ret;
 	}
