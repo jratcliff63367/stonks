@@ -347,10 +347,73 @@ public:
 		}
 	}
 
-	void computeVolatility(const char *year,const std::vector<double> &percentChange,const std::vector<double> &absolutePercentChange)
+	void computeVolatility(const char *year,
+						   const std::vector<double> &prices,
+						   const std::vector<double> &percentChange,
+						   const std::vector<double> &absolutePercentChange,
+						   double &totalGain,
+						   double &totalProfit)
 	{
+		uint32_t crossCount = 0;
+		double lastPrice = prices[0];
+		bool searchingForPriceDrop=true;
+		size_t count = prices.size();
+		#define BUY_PERCENT -3.0
+		#define SELL_PERCENT 3.0
+		double profit = 0;
+		for (size_t i=1; i<count; i++)
+		{
+			double price = prices[i];
+			double diff = price - lastPrice;
+			double percent = (diff*100.0) / lastPrice;
+			if ( searchingForPriceDrop )
+			{
+				if ( percent <= BUY_PERCENT )
+				{
+					searchingForPriceDrop = false;
+					//printf("Price drop from %0.2f to %0.2f so this would be a buy.\n", lastPrice, price );
+					lastPrice = price;
+				}
+				else if ( price > lastPrice )
+				{
+					lastPrice = price;
+					//printf("Price increased to:%0.2f\n", price );
+				}
+			}
+			else 
+			{
+				if ( percent >= SELL_PERCENT )
+				{
+					//printf("Price raised to %0.2f from our last buy price of %0.2f time to take profit\n", price, lastPrice);
+					profit+=diff;
+					searchingForPriceDrop = true;
+					lastPrice = price;
+					crossCount++;
+				}
+			}
+		}
+		double priceBegin = prices[0];
+		double priceEnd = prices[count-1];
+		if ( profit == 0 )
+		{
+			profit = priceEnd - lastPrice;
+		}
+
+		double gain = priceEnd - priceBegin;
 		(absolutePercentChange);
-		printf("[%s] Volatility for %d days.\n", year, uint32_t(percentChange.size()));
+		(percentChange);
+
+		totalGain+=gain;
+		totalProfit+=profit;
+
+		if ( gain > profit )
+		{
+			printf("[%s] HOLD WINS:%0.2f to %0.2f : CrossCount:%d\n",year, gain, profit, crossCount);
+		}
+		else
+		{
+			printf("[%s] TRADE WINS:%0.2f to %0.2f : CrossCount:%d\n",year, profit, gain, crossCount);
+		}
 	}
 
 	void volatilityReport(const char *symbol)
@@ -361,6 +424,9 @@ public:
 		auto s = mStonks->find(temp);
 		if ( s )
 		{
+			double totalGain=0;
+			double totalProfit=0;
+			std::vector< double > prices;
 			std::vector< double > percentChange;
 			std::vector< double> absolutePercentChange;
 			std::string str;
@@ -371,7 +437,7 @@ public:
 				const char *year = i.mDate.c_str();
 				if ( lastYear && strncmp(lastYear,year,4) != 0 )
 				{
-					computeVolatility(lastYear,percentChange,absolutePercentChange);
+					computeVolatility(lastYear,prices,percentChange,absolutePercentChange,totalGain,totalProfit);
 					lastYear = nullptr;
 				}
 				if ( lastYear )
@@ -382,15 +448,29 @@ public:
 					double apercent = (adiff*100.0) / lastPrice;
 					percentChange.push_back(percent);
 					absolutePercentChange.push_back(apercent);
+					prices.push_back(i.mPrice);
 				}
 				else
 				{
 					percentChange.clear();
 					absolutePercentChange.clear();
+					prices.clear();
 					str = i.mDate;
 					lastYear = str.c_str();
 					lastPrice = i.mPrice;
 				}
+			}
+			if ( lastYear )
+			{
+				computeVolatility(lastYear,prices,percentChange,absolutePercentChange,totalGain,totalProfit);
+			}
+			if ( totalGain >= totalProfit )
+			{
+				printf("HOLD WINS: %0.2f to %0.2f\n", totalGain, totalProfit);
+			}
+			else
+			{
+				printf("TRADE WINS: %0.2f to %0.2f\n", totalProfit, totalGain);
 			}
 		}
 		else
