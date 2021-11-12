@@ -87,6 +87,7 @@ public:
 	virtual void backup(void) = 0;
 	virtual void restore(void) = 0;
 
+
 	virtual void release(void) = 0;
 protected:
 	virtual ~Stonks(void)
