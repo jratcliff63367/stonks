@@ -5,6 +5,7 @@
 #include "StandardDeviation.h"
 
 #include <map>
+#include <set>
 #include <vector>
 #include <assert.h>
 
@@ -16,6 +17,8 @@ using StocksMap = std::map< std::string, Stock >;
 using DateToIndex = std::map< std::string, uint32_t >;
 using IndexToDate = std::map< uint32_t, std::string>;
 using PriceHistory = std::vector< Price >;
+using SectorMap = std::map< std::string, uint32_t >;
+using IndustryMap = std::map< std::string, uint32_t >;
 
 class StonksImpl : public Stonks
 {
@@ -353,6 +356,67 @@ public:
    		GET_STRING("DividendDate",s.mDividendDate);
    		GET_STRING("ExDividendDate",s.mExDividendDate);
 
+		addSector(s.mSector);
+		addIndustry(s.mIndustry);
+
+		return ret;
+	}
+
+	void addSector(const std::string &sector)
+	{
+		SectorMap::iterator found = mSectors.find(sector);
+		if ( found == mSectors.end() )
+		{
+			mSectors[sector] = 1;
+		}
+		else
+		{
+			(*found).second++;
+		}
+	}
+
+	void addIndustry(const std::string &industry)
+	{
+		IndustryMap::iterator found = mIndustries.find(industry);
+		if ( found == mIndustries.end() )
+		{
+			mIndustries[industry] = 1;
+		}
+		else
+		{
+			(*found).second++;
+		}
+	}
+
+
+	virtual void showSectors(void) final
+	{
+		for (auto &i:mSectors)
+		{
+			printf("%-60s : %10d\n", i.first.c_str(), i.second);
+		}
+		printf("Unique Sectors:%d\n", uint32_t(mSectors.size()));
+	}
+
+	virtual void showIndustries(void) final
+	{
+		for (auto &i:mIndustries)
+		{
+			printf("%-60s : %10d\n", i.first.c_str(), i.second);
+		}
+		printf("Unique Industries:%d\n", uint32_t(mIndustries.size()));
+	}
+
+	virtual const Stock *find(const std::string &symbol) const final
+	{
+		const stonks::Stock *ret = nullptr;
+
+		StocksMap::const_iterator found = mStocks.find(symbol);
+		if ( found != mStocks.end() )
+		{
+			ret = &(*found).second;
+		}
+
 		return ret;
 	}
 
@@ -360,6 +424,8 @@ public:
 	StocksMap	mStocks;
 	DateToIndex	mDateToIndex;
 	IndexToDate mIndexToDate;
+	SectorMap	mSectors;
+	IndustryMap	mIndustries;
 };
 
 Stonks *Stonks::create(void)

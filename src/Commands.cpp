@@ -1,11 +1,15 @@
 #include "Commands.h"
 #include "GetArgs.h"
 #include "stonks.h"
+#include "sutil.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream> 
 #include <string> 
+#include <assert.h>
+#include <math.h>
+#include <float.h>
 
 #include <unordered_map>
 
@@ -29,6 +33,24 @@ public:
 		mCommands["tickers"] = CommandType::tickers;
 		mCommands["backup"] = CommandType::backup;
 		mCommands["restore"] = CommandType::restore;
+
+		mCommands["marketcap"] = CommandType::marketcap;
+		mCommands["mcap"] = CommandType::marketcap;
+
+		mCommands["pe"] = CommandType::pe;
+
+		mCommands["dividend"] = CommandType::dividend;
+		mCommands["div"] = CommandType::dividend;
+
+		mCommands["filter"] = CommandType::filter;
+		mCommands["f"] = CommandType::filter;
+
+		mCommands["sectors"] = CommandType::sectors;
+		mCommands["industry"] = CommandType::industry;
+		mCommands["industries"] = CommandType::industry;
+
+		mCommands["volatility"] = CommandType::volatility;
+
 		mStonks = stonks::Stonks::create();
 	}
 
@@ -84,6 +106,61 @@ public:
 				case CommandType::backup:
 					mStonks->backup();
 					break;
+				case CommandType::marketcap:
+					if ( argc >= 2 )
+					{
+						mMarketCap = atof(argv[1])*1000000000.0;
+						marketCap();
+					}
+					else
+					{
+						printf("Usage: marketcap <billions>\n");
+					}
+					break;
+				case CommandType::pe:
+					if ( argc >= 2 )
+					{
+						mPE = atof(argv[1]);
+						peRatio();
+					}
+					else
+					{
+						printf("Usage: pe <value>\n");
+					}
+					break;
+				case CommandType::dividend:
+					if ( argc >= 2 )
+					{
+						mDividend = atof(argv[1])/100.0;
+						dividend();
+					}
+					else
+					{
+						printf("Usage: dividend <percent>\n");
+					}
+					break;
+				case CommandType::volatility:
+					if ( argc >= 2 )
+					{
+						for (uint32_t i=1; i<argc; i++)
+						{
+							volatilityReport(argv[i]);
+						}
+					}
+					else
+					{
+						printf("Usage: volatility <stock1> ...\n");
+					}
+					break;
+				case CommandType::filter:
+					filterStocks();
+					break;
+				case CommandType::sectors:
+					mStonks->showSectors();
+					break;
+				case CommandType::industry:
+					mStonks->showIndustries();
+					break;
 				default:
 					printf("Command: %s not yet implemented.\n", argv[0]);
 					break;
@@ -111,6 +188,220 @@ public:
 		return ret;
 	}
 
+	void marketCap(void)
+	{
+		uint32_t countTotal=0;
+		uint32_t countGreater=0;
+		uint32_t countLesser=0;
+		uint32_t countUndefined=0;
+		uint32_t count = mStonks->begin();
+		for (uint32_t i=0; i<count; i++)
+		{
+			const stonks::Stock *s = mStonks->next();
+			assert(s);
+			if ( s )
+			{
+				countTotal++;
+				if ( s->mMarketCapitalization == 0 )
+				{
+					countUndefined++;
+				}
+				else if ( s->mMarketCapitalization >= mMarketCap )
+				{
+					countGreater++;
+				}
+				else if ( s->mMarketCapitalization < mMarketCap )
+				{
+					countLesser++;
+				}
+			}
+		}
+		printf("TotalStockCount: %-20s\n", sutil::formatNumber(countTotal));
+		printf("GreaterCount:    %-20s\n", sutil::formatNumber(countGreater));
+		printf("LessCount:       %-20s\n", sutil::formatNumber(countLesser));
+		printf("UndfinedCount:   %-20s\n", sutil::formatNumber(countUndefined));
+	}
+
+	void peRatio(void)
+	{
+		uint32_t countTotal=0;
+		uint32_t countGreater=0;
+		uint32_t countLesser=0;
+		uint32_t countUndefined=0;
+		uint32_t count = mStonks->begin();
+		for (uint32_t i=0; i<count; i++)
+		{
+			const stonks::Stock *s = mStonks->next();
+			assert(s);
+			if ( s )
+			{
+				countTotal++;
+				if ( s->mPERatio == 0 )
+				{
+					countUndefined++;
+				}
+				else if ( s->mPERatio >= mPE )
+				{
+					countGreater++;
+				}
+				else if ( s->mPERatio < mPE )
+				{
+					countLesser++;
+				}
+			}
+		}
+		printf("TotalStockCount: %-20s\n", sutil::formatNumber(countTotal));
+		printf("GreaterCount:    %-20s\n", sutil::formatNumber(countGreater));
+		printf("LessCount:       %-20s\n", sutil::formatNumber(countLesser));
+		printf("UndfinedCount:   %-20s\n", sutil::formatNumber(countUndefined));
+	}
+
+	void dividend(void)
+	{
+		uint32_t countTotal=0;
+		uint32_t countGreater=0;
+		uint32_t countLesser=0;
+		uint32_t countUndefined=0;
+		uint32_t count = mStonks->begin();
+		for (uint32_t i=0; i<count; i++)
+		{
+			const stonks::Stock *s = mStonks->next();
+			assert(s);
+			if ( s )
+			{
+				countTotal++;
+				if ( s->mDividendYield == 0 )
+				{
+					countUndefined++;
+				}
+				else if ( s->mDividendYield >= mDividend )
+				{
+					countGreater++;
+				}
+				else if ( s->mDividendYield < mDividend )
+				{
+					countLesser++;
+				}
+			}
+		}
+		printf("TotalStockCount: %-20s\n", sutil::formatNumber(countTotal));
+		printf("GreaterCount:    %-20s\n", sutil::formatNumber(countGreater));
+		printf("LessCount:       %-20s\n", sutil::formatNumber(countLesser));
+		printf("UndfinedCount:   %-20s\n", sutil::formatNumber(countUndefined));
+	}
+
+	void filterStocks(void)
+	{
+		FILE *fph = fopen("d:\\github\\stonks\\scripts\\filter.csv","wb");
+		uint32_t found = 0;
+		uint32_t count = mStonks->begin();
+		for (uint32_t i=0; i<count; i++)
+		{
+			const stonks::Stock *s = mStonks->next();
+			assert(s);
+			if ( s )
+			{
+				bool ok = true;
+				if ( mMarketCap )
+				{
+					if ( s->mMarketCapitalization < mMarketCap )
+					{
+						ok = false;
+					}
+				}
+				if ( ok && mPE )
+				{
+					if ( s->mPERatio == 0 || s->mPERatio > mPE )
+					{
+						ok = false;
+					}
+				}
+				if ( ok && mDividend )
+				{
+					if ( s->mDividendYield == 0 || s->mDividendYield < mDividend )
+					{
+						ok = false;
+					}
+				}
+				if ( ok )
+				{
+					if ( fph )
+					{
+						fprintf(fph,"%s\n", s->mSymbol.c_str() );
+					}
+					printf("%8s : MCAP:%0.2f PE:%0.2f DIV:%0.2f%% : Sector:%s : Name:%s\n", 
+						s->mSymbol.c_str(),
+						s->mMarketCapitalization/1000000000.0,
+						s->mPERatio,
+						s->mDividendYield*100,
+						s->mSector.c_str(),
+						s->mName.c_str());
+					found++;
+				}
+			}
+		}
+		printf("Found %d matching stocks.\n", found);
+		if ( fph )
+		{
+			fclose(fph);
+		}
+	}
+
+	void computeVolatility(const char *year,const std::vector<double> &percentChange,const std::vector<double> &absolutePercentChange)
+	{
+		(absolutePercentChange);
+		printf("[%s] Volatility for %d days.\n", year, uint32_t(percentChange.size()));
+	}
+
+	void volatilityReport(const char *symbol)
+	{
+		char temp[512];
+		strncpy(temp,symbol,sizeof(temp));
+		_strupr(temp);
+		auto s = mStonks->find(temp);
+		if ( s )
+		{
+			std::vector< double > percentChange;
+			std::vector< double> absolutePercentChange;
+			std::string str;
+			const char *lastYear = nullptr;
+			double lastPrice = 0;
+			for (auto &i:s->mHistory)
+			{
+				const char *year = i.mDate.c_str();
+				if ( lastYear && strncmp(lastYear,year,4) != 0 )
+				{
+					computeVolatility(lastYear,percentChange,absolutePercentChange);
+					lastYear = nullptr;
+				}
+				if ( lastYear )
+				{
+					double diff = i.mPrice - lastPrice;
+					double adiff = abs(diff);
+					double percent = (diff*100.0) / lastPrice;
+					double apercent = (adiff*100.0) / lastPrice;
+					percentChange.push_back(percent);
+					absolutePercentChange.push_back(apercent);
+				}
+				else
+				{
+					percentChange.clear();
+					absolutePercentChange.clear();
+					str = i.mDate;
+					lastYear = str.c_str();
+					lastPrice = i.mPrice;
+				}
+			}
+		}
+		else
+		{
+			printf("Stock symbol:%s not found\n", symbol);
+		}
+	}
+
+	double			mMarketCap{0}; // 
+	double			mPE{0};
+	double			mDividend{0};
 	stonks::Stonks	*mStonks{nullptr};
 	CommandTypeMap mCommands;
 };

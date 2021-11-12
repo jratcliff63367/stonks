@@ -83,10 +83,13 @@ public:
 
 	virtual uint32_t begin(void) = 0; // begin iterating stock symbols, returns the number available.
 	virtual const Stock *next(void) = 0; // goes to the next
+	virtual const Stock *find(const std::string &symbol) const = 0;
 
 	virtual void backup(void) = 0;
 	virtual void restore(void) = 0;
 
+	virtual void showSectors(void) = 0;
+	virtual void showIndustries(void) = 0;
 
 	virtual void release(void) = 0;
 protected:

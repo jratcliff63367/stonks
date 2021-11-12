@@ -324,6 +324,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="src\InParser.cpp" />
     <ClCompile Include="src\KeyValueDatabase.cpp" />
     <ClCompile Include="src\stonks.cpp" />
+    <ClCompile Include="src\sutil.cpp" />
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\cache.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\comparator.h" />
@@ -423,6 +424,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="include\InParser.h" />
     <ClInclude Include="include\KeyValueDatabase.h" />
     <ClInclude Include="include\stonks.h" />
+    <ClInclude Include="include\sutil.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\github\stonks\ZERO_CHECK.vcxproj">

@@ -136,6 +136,9 @@
     <ClCompile Include="src\Commands.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\sutil.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h">
@@ -310,6 +313,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\GetArgs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sutil.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

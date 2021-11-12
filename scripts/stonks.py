@@ -15,12 +15,14 @@ sleep_time = 0.9
 # --------------- GLOBAL PREFERENCES ---------------------- #
 API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
 # Boolean switch so that you only run historical data once or on-demand
-historical_data = True
+historical_data = False
 nasdaq_csv = False
-company_overview = True
+company_overview = False
+refresh_csv = True
 # --------------------------------------------------------- #
 
-csv_location = 'd:\\github\\stonks\\tickers.csv'
+csv_location = 'd:\\github\\stonks\\scripts\\tickers.csv'
+csv_refresh_location = 'd:\\github\\stonks\\scripts\\refresh.csv'
 db_dir = 'd:\\github\\stonks\\stock-market'
 
 # Bump this to force a refresh of all historical data
@@ -81,6 +83,47 @@ def get_historical_quotes(tickers_csv_file, db):
                 print(f'Error({jsonstring}) accessing the time series for ticker {ticker}. Skipping it.')
 
 
+
+# gets entire available data history at AV
+def refresh_historical_quotes(tickers_csv_file, db):
+    for ticker in tickers_csv_file:
+
+        stock_id = 'price' + '.' + ticker;
+        stock_key = bytes(stock_id, encoding='utf-8')
+        time.sleep(sleep_time)
+
+        url = "https://alpha-vantage.p.rapidapi.com/query"
+
+        querystring = {"function": "TIME_SERIES_DAILY_ADJUSTED", "symbol": ticker, "datatype": "json",
+                    "outputsize": "full"}
+
+        headers = {
+            'x-rapidapi-host': "alpha-vantage.p.rapidapi.com",
+            'x-rapidapi-key': f"{API_KEY}"
+        }
+        #print(f'Requesting historical price data for {ticker}')
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        data = response.json()
+
+        try:
+            stock_keys_list = list(data['Time Series (Daily)'].keys())
+            print(f'Saving historical price data for {ticker}')
+            db.put(stock_key,bytes(have_price,encoding='utf-8'))
+            for date_key in stock_keys_list:
+                stock_date = date_key
+                stock_open_price = str(data['Time Series (Daily)'][date_key]['1. open'])
+                stock_identifier = 'price' + '.' + ticker + '.' + stock_date
+                #print(f'Key({stock_identifier}) Value({stock_open_price})')
+                bkey = bytes(stock_identifier, encoding='utf-8')
+                bvalue = bytes(stock_open_price, encoding='utf-8')
+                db.put(bkey, bvalue)
+        except Exception as e:
+            db.put(stock_key,bytes(no_price,encoding='utf-8'))
+            jsonstring = json.dumps(data)
+            print(f'Error({jsonstring}) accessing the time series for ticker {ticker}. Skipping it.')
+
+
+
 def get_fundamentals(tickers_csv_file, db):
     for ticker in tickers_csv_file:
         ticker_symbol = 'ticker.' + ticker;
@@ -120,6 +163,11 @@ if __name__ == "__main__":
     # daily run
 
     db = plyvel.DB(db_dir, create_if_missing=True)
+
+
+    if refresh_csv:
+        refresh_csv = upload_csv(csv_refresh_location)
+        refresh_historical_quotes(refresh_csv, db)
 
     sorted_df_sliced = upload_csv(csv_location)
 

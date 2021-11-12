@@ -17,6 +17,13 @@ enum class CommandType : uint32_t
 	tickers,
 	backup,
 	restore,
+	marketcap,
+	pe,
+	dividend,
+	filter,
+	sectors,
+	industry,
+	volatility,
 	last
 };
 
