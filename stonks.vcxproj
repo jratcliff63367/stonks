@@ -423,6 +423,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="include\GetArgs.h" />
     <ClInclude Include="include\InParser.h" />
     <ClInclude Include="include\KeyValueDatabase.h" />
+    <ClInclude Include="include\StandardDeviation.h" />
     <ClInclude Include="include\stonks.h" />
     <ClInclude Include="include\sutil.h" />
   </ItemGroup>

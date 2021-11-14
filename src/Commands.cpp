@@ -2,6 +2,7 @@
 #include "GetArgs.h"
 #include "stonks.h"
 #include "sutil.h"
+#include "StandardDeviation.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +13,8 @@
 #include <float.h>
 
 #include <unordered_map>
+
+#pragma warning(disable:4100)
 
 namespace commands
 {
@@ -354,14 +357,26 @@ public:
 						   double &totalGain,
 						   double &totalProfit)
 	{
+#if 1
+		double mean;
+		double stdDev = computeStandardDeviation(uint32_t(percentChange.size()),&percentChange[0],mean);
+
+		double amean;
+		double astdDev = computeStandardDeviation(uint32_t(absolutePercentChange.size()),&absolutePercentChange[0],amean);
+
+		printf("[%s] : Mean:%0.2f%% STDEV:%0.4f%% : AbsoluteMean:%0.2f%% AbsoluteSTDEV:%0.4f%%\n",year,
+			mean,stdDev,amean,astdDev);
+#endif
+#if 0
 		uint32_t crossCount = 0;
 		double lastPrice = prices[0];
 		bool searchingForPriceDrop=true;
 		size_t count = prices.size();
-		#define BUY_PERCENT -3.0
-		#define SELL_PERCENT 3.0
+		#define BUY_PERCENT -5.0
+		#define SELL_PERCENT 5.0
 		double profit = 0;
-		for (size_t i=1; i<count; i++)
+		size_t startIndex = 1;
+		for (size_t i=startIndex; i<count; i++)
 		{
 			double price = prices[i];
 			double diff = price - lastPrice;
@@ -414,6 +429,7 @@ public:
 		{
 			printf("[%s] TRADE WINS:%0.2f to %0.2f : CrossCount:%d\n",year, profit, gain, crossCount);
 		}
+#endif
 	}
 
 	void volatilityReport(const char *symbol)
@@ -432,6 +448,7 @@ public:
 			std::string str;
 			const char *lastYear = nullptr;
 			double lastPrice = 0;
+
 			for (auto &i:s->mHistory)
 			{
 				const char *year = i.mDate.c_str();
@@ -444,17 +461,21 @@ public:
 				{
 					double diff = i.mPrice - lastPrice;
 					double adiff = abs(diff);
+
 					double percent = (diff*100.0) / lastPrice;
 					double apercent = (adiff*100.0) / lastPrice;
+
 					percentChange.push_back(percent);
 					absolutePercentChange.push_back(apercent);
 					prices.push_back(i.mPrice);
+					lastPrice = i.mPrice;
 				}
 				else
 				{
 					percentChange.clear();
 					absolutePercentChange.clear();
 					prices.clear();
+
 					str = i.mDate;
 					lastYear = str.c_str();
 					lastPrice = i.mPrice;
@@ -464,6 +485,7 @@ public:
 			{
 				computeVolatility(lastYear,prices,percentChange,absolutePercentChange,totalGain,totalProfit);
 			}
+#if 0
 			if ( totalGain >= totalProfit )
 			{
 				printf("HOLD WINS: %0.2f to %0.2f\n", totalGain, totalProfit);
@@ -472,6 +494,7 @@ public:
 			{
 				printf("TRADE WINS: %0.2f to %0.2f\n", totalProfit, totalGain);
 			}
+#endif
 		}
 		else
 		{

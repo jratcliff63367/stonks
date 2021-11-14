@@ -1,8 +1,10 @@
 #pragma once
 
 #include <stdint.h>
+#include <float.h>
+#include <math.h>
 
-double computeStandardDeviation(uint32_t count,const double *points,double &mean)
+inline double computeStandardDeviation(uint32_t count,const double *points,double &mean)
 {
     double ret = 0;
 

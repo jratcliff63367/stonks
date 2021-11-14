@@ -318,6 +318,9 @@
     <ClInclude Include="include\sutil.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\StandardDeviation.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\github\stonks\CMakeLists.txt" />

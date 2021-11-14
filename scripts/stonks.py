@@ -18,7 +18,8 @@ API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
 historical_data = False
 nasdaq_csv = False
 company_overview = False
-refresh_csv = True
+refresh_history = False
+refresh_daily = True
 # --------------------------------------------------------- #
 
 csv_location = 'd:\\github\\stonks\\scripts\\tickers.csv'
@@ -123,6 +124,40 @@ def refresh_historical_quotes(tickers_csv_file, db):
             print(f'Error({jsonstring}) accessing the time series for ticker {ticker}. Skipping it.')
 
 
+# gets entire available data history at AV
+def refresh_daily_quotes(tickers_csv_file, db):
+    for ticker in tickers_csv_file:
+
+        stock_id = 'price' + '.' + ticker;
+        stock_key = bytes(stock_id, encoding='utf-8')
+        time.sleep(sleep_time)
+
+        url = "https://alpha-vantage.p.rapidapi.com/query"
+
+        querystring = {"function": "GLOBAL_QUOTE", "symbol": ticker, "datatype": "json"}
+
+        headers = {
+            'x-rapidapi-host': "alpha-vantage.p.rapidapi.com",
+            'x-rapidapi-key': f"{API_KEY}"
+        }
+        #print(f'Requesting historical price data for {ticker}')
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        data = response.json()
+
+        try:
+            stock_open_price = data['Global Quote']['05. price']
+            stock_date = data['Global Quote']['07. latest trading day']
+
+            print(f'[{ticker}] : Price:{stock_open_price} Date:{stock_date}')
+
+            stock_identifier = 'price' + '.' + ticker + '.' + stock_date
+            bkey = bytes(stock_identifier, encoding='utf-8')
+            bvalue = bytes(stock_open_price, encoding='utf-8')
+            db.put(bkey, bvalue)
+        except Exception as e:
+            jsonstring = json.dumps(data)
+            print(f'Error({jsonstring}) Failed to get price for ticker {ticker}. Skipping it.')
+
 
 def get_fundamentals(tickers_csv_file, db):
     for ticker in tickers_csv_file:
@@ -164,10 +199,13 @@ if __name__ == "__main__":
 
     db = plyvel.DB(db_dir, create_if_missing=True)
 
+    refresh_csv = upload_csv(csv_refresh_location)
 
-    if refresh_csv:
-        refresh_csv = upload_csv(csv_refresh_location)
+    if refresh_history:
         refresh_historical_quotes(refresh_csv, db)
+
+    if refresh_daily:
+        refresh_daily_quotes(refresh_csv, db)
 
     sorted_df_sliced = upload_csv(csv_location)
 
