@@ -139,6 +139,9 @@
     <ClCompile Include="src\sutil.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\TradingSimulator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h">
@@ -319,6 +322,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\StandardDeviation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TradingSimulator.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

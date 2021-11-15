@@ -24,6 +24,7 @@ enum class CommandType : uint32_t
 	sectors,
 	industry,
 	volatility,
+	simulate,
 	last
 };
 

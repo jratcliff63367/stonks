@@ -143,6 +143,7 @@ def refresh_daily_quotes(tickers_csv_file, db):
         #print(f'Requesting historical price data for {ticker}')
         response = requests.request("GET", url, headers=headers, params=querystring)
         data = response.json()
+        #print(data)
 
         try:
             stock_open_price = data['Global Quote']['05. price']
@@ -192,10 +193,24 @@ def get_fundamentals(tickers_csv_file, db):
                 print(f'Error({jsonstring}) accessing the fundamentals for ticker {ticker}. Skipping it.')
 
 
+def test():
+    url = "https://twelve-data1.p.rapidapi.com/price"
+
+    querystring = {"symbol":"AAPL","format":"json","outputsize":"30"}
+
+    headers = {
+        'x-rapidapi-host': "twelve-data1.p.rapidapi.com",
+        'x-rapidapi-key': "6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    print(response.text)
 
 
 if __name__ == "__main__":
     # daily run
+    test()
 
     db = plyvel.DB(db_dir, create_if_missing=True)
 

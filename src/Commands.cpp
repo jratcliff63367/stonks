@@ -3,6 +3,7 @@
 #include "stonks.h"
 #include "sutil.h"
 #include "StandardDeviation.h"
+#include "TradingSimulator.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,6 +54,9 @@ public:
 		mCommands["industries"] = CommandType::industry;
 
 		mCommands["volatility"] = CommandType::volatility;
+		mCommands["vol"] = CommandType::volatility;
+
+		mCommands["simulate"] = CommandType::simulate;
 
 		mStonks = stonks::Stonks::create();
 	}
@@ -163,6 +167,9 @@ public:
 					break;
 				case CommandType::industry:
 					mStonks->showIndustries();
+					break;
+				case CommandType::simulate:
+					runSimulation();
 					break;
 				default:
 					printf("Command: %s not yet implemented.\n", argv[0]);
@@ -295,6 +302,7 @@ public:
 
 	void filterStocks(void)
 	{
+		mStockList.clear();
 		FILE *fph = fopen("d:\\github\\stonks\\scripts\\filter.csv","wb");
 		uint32_t found = 0;
 		uint32_t count = mStonks->begin();
@@ -328,6 +336,7 @@ public:
 				}
 				if ( ok )
 				{
+					mStockList.push_back(s->mSymbol);
 					if ( fph )
 					{
 						fprintf(fph,"%s\n", s->mSymbol.c_str() );
@@ -358,14 +367,14 @@ public:
 						   double &totalProfit)
 	{
 #if 1
-		double mean;
-		double stdDev = computeStandardDeviation(uint32_t(percentChange.size()),&percentChange[0],mean);
+//		double mean;
+//		double stdDev = computeStandardDeviation(uint32_t(percentChange.size()),&percentChange[0],mean);
 
 		double amean;
 		double astdDev = computeStandardDeviation(uint32_t(absolutePercentChange.size()),&absolutePercentChange[0],amean);
 
-		printf("[%s] : Mean:%0.2f%% STDEV:%0.4f%% : AbsoluteMean:%0.2f%% AbsoluteSTDEV:%0.4f%%\n",year,
-			mean,stdDev,amean,astdDev);
+		printf("[%s] : %0.2f\n", year, astdDev*100);
+
 #endif
 #if 0
 		uint32_t crossCount = 0;
@@ -449,8 +458,17 @@ public:
 			const char *lastYear = nullptr;
 			double lastPrice = 0;
 
-			for (auto &i:s->mHistory)
+			size_t pcount = s->mHistory.size();
+
+			for (size_t j=0; j<pcount; j++)
 			{
+				auto found = s->mHistory.find(uint32_t(j)+s->mStartDate);
+				if ( found == s->mHistory.end() )
+				{
+					printf("Fatal error\n");
+					exit(1);
+				}
+				const auto &i = (*found).second;
 				const char *year = i.mDate.c_str();
 				if ( lastYear && strncmp(lastYear,year,4) != 0 )
 				{
@@ -502,11 +520,31 @@ public:
 		}
 	}
 
+	void runSimulation(void)
+	{
+		if ( mStockList.empty() )
+		{
+			printf("No stocks selected to run the simulation on yet. Try running 'filter' to match market-cap, PE ratio, etc.\n");
+			return;
+		}
+		stonks::TradingParameters params;
+		stonks::TradingSimulator *ts = stonks::TradingSimulator::create();
+		if ( ts )
+		{
+			uint32_t currentDay = mStonks->getCurrentDay();
+			params.mEndTradingDay = currentDay;
+			params.mStartTradingDay = currentDay-60;
+			ts->runSimulation(params,mStockList,mStonks);
+			ts->release();
+		}
+	}
+
 	double			mMarketCap{0}; // 
 	double			mPE{0};
 	double			mDividend{0};
 	stonks::Stonks	*mStonks{nullptr};
 	CommandTypeMap mCommands;
+	stonks::StockList	mStockList;
 };
 
 Commands *Commands::create(void)

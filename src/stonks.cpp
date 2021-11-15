@@ -16,7 +16,6 @@ namespace stonks
 using StocksMap = std::map< std::string, Stock >;
 using DateToIndex = std::map< std::string, uint32_t >;
 using IndexToDate = std::map< uint32_t, std::string>;
-using PriceHistory = std::vector< Price >;
 using SectorMap = std::map< std::string, uint32_t >;
 using IndustryMap = std::map< std::string, uint32_t >;
 
@@ -193,6 +192,9 @@ public:
 		if ( ok )
 		{
 			PriceHistory phistory;
+			uint32_t startDate=0;
+			uint32_t endDate = 0;
+
 			while ( ok )
 			{
 				std::string key;
@@ -215,7 +217,25 @@ public:
 							if ( p.mDateIndex )
 							{
 								assert(p.mDateIndex);
-								phistory.push_back(p);
+
+								if ( startDate == 0 )
+								{
+									startDate = p.mDateIndex;
+									endDate = p.mDateIndex;
+								}
+								else
+								{
+									if ( p.mDateIndex < startDate )
+									{
+										startDate = p.mDateIndex;
+									}
+									if ( p.mDateIndex > endDate )
+									{
+										endDate = p.mDateIndex;
+									}
+								}
+
+								phistory[p.mDateIndex] = p;
 								ret++;
 							}
 							else
@@ -231,6 +251,8 @@ public:
 			if ( found != mStocks.end() )
 			{
 				(*found).second.mHistory = phistory;
+				(*found).second.mStartDate = startDate;
+				(*found).second.mEndDate = endDate;
 			}
 			else
 			{
@@ -283,7 +305,7 @@ public:
 				printf("Saving Price History:%s\n", scratch);
 				for (auto &j:stock.mHistory)
 				{
-					fprintf(price,"%s,%0.2f\n", j.mDate.c_str(), j.mPrice);
+					fprintf(price,"%s,%0.2f\n", j.second.mDate.c_str(), j.second.mPrice);
 				}
 				fclose(price);
 			}
@@ -419,6 +441,12 @@ public:
 
 		return ret;
 	}
+
+	virtual uint32_t getCurrentDay(void) const final
+	{
+		return uint32_t(mDateToIndex.size());
+	}
+
 
 	StocksMap::iterator mIterator;
 	StocksMap	mStocks;

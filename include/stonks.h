@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <stdint.h>
 
 namespace stonks
@@ -15,12 +16,27 @@ public:
 	uint32_t	mDateIndex{0};	// The date-index
 };
 
-using PriceHistory = std::vector< Price >;
+using PriceHistory = std::unordered_map<uint32_t, Price >;
 
 
 class Stock
 {
 public:
+
+	bool getPrice(uint32_t tradingDay,Price &price)
+	{
+		bool ret = false;
+
+		PriceHistory::const_iterator found = mHistory.find(tradingDay);
+		if ( found != mHistory.end() )
+		{
+			ret = true;
+			price = (*found).second;
+		}
+
+		return ret;
+	}
+
 	std::string		mSymbol;	// The stock symbol
 	std::string		mAssetType;
 	std::string		mName;
@@ -68,6 +84,8 @@ public:
 	std::string		mDividendDate;
 	std::string		mExDividendDate;
 	std::string		mJSON;		// The JSON data which desribes this stock
+	uint32_t		mStartDate{0};
+	uint32_t		mEndDate{0};
 	PriceHistory	mHistory;	// The price history of this stock
 };
 
@@ -80,10 +98,13 @@ public:
 
 	virtual uint32_t dateToIndex(const char *date) const = 0;
 	virtual const char *indexToDate(uint32_t index) const = 0;
+	virtual uint32_t getCurrentDay(void) const = 0;
 
 	virtual uint32_t begin(void) = 0; // begin iterating stock symbols, returns the number available.
 	virtual const Stock *next(void) = 0; // goes to the next
 	virtual const Stock *find(const std::string &symbol) const = 0;
+
+
 
 	virtual void backup(void) = 0;
 	virtual void restore(void) = 0;
