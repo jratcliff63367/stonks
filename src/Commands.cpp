@@ -4,6 +4,7 @@
 #include "sutil.h"
 #include "StandardDeviation.h"
 #include "TradingSimulator.h"
+#include "rand.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,14 @@
 
 namespace commands
 {
+
+static Rand rand;
+
+
+double randomRange(double min,double max)
+{
+	return (rand.Ranf()*(max-min))+min;
+}
 
 using CommandTypeMap = std::unordered_map< std::string, CommandType >;
 
@@ -313,6 +322,17 @@ public:
 			if ( s )
 			{
 				bool ok = true;
+				// only allow stocks trading between a range of reasonable prices...
+				{
+					for (auto &j:s->mHistory)
+					{
+						if ( j.second.mPrice < mMinPrice || j.second.mPrice > mMaxPrice )
+						{
+							ok = false;
+							break;
+						}
+					}
+				}
 				if ( mMarketCap )
 				{
 					if ( s->mMarketCapitalization < mMarketCap )
@@ -529,12 +549,68 @@ public:
 		}
 		stonks::TradingParameters params;
 		stonks::TradingSimulator *ts = stonks::TradingSimulator::create();
+
+
 		if ( ts )
 		{
 			uint32_t currentDay = mStonks->getCurrentDay();
 			params.mEndTradingDay = currentDay-10;
-			params.mStartTradingDay = currentDay-200;
-			ts->runSimulation(params,mStockList,mStonks);
+			params.mStartTradingDay = currentDay-(12*20*5);
+
+			double best = 0;
+			stonks::TradingParameters bestParams;
+			printf("Running 100 random scenarios.\n");
+			for (uint32_t i=0; i<1000; i++)
+			{
+
+				params.mInitialCapitalAllocation = randomRange(0.7,1);
+
+				params.mMaxBuy = randomRange(1000,10000);
+				int32_t rebuyCount = int32_t(randomRange(0,5));
+				if ( rebuyCount )
+				{
+					params.mFirstBuy = randomRange(params.mMaxBuy/8,params.mMaxBuy);
+					params.mRebuy = (params.mMaxBuy-params.mFirstBuy) / double(rebuyCount);
+				}
+				else
+				{
+					params.mFirstBuy = params.mMaxBuy;
+				}
+				params.mPercentFirstBuy = randomRange(-10,-1);
+				params.mPercentRebuy    = randomRange(-10,-1);
+				params.mTakeProfit      = randomRange(1,10);
+
+				double mean = ts->runSimulation(params,mStockList,mStonks);
+
+				if ( mean > best )
+				{
+					best = mean;
+					bestParams = params;
+
+					printf("-------------------------------------------------------------------------------------------------\n");
+					printf("Best Increase in rate of return by trading:%0.2f%%\n", best );
+					printf("BestInitialCapitalAllocation=%0.2f\n", bestParams.mInitialCapitalAllocation);
+					printf("BestFirstBuy=%0.2f\n", bestParams.mFirstBuy);
+					printf("BestRebuy=%0.2f\n", bestParams.mRebuy);
+					printf("BestFirstBuyPercent=%0.2f%%\n", bestParams.mPercentFirstBuy);
+					printf("BestRebuyPercent=%0.2f%%\n", bestParams.mPercentRebuy);
+					printf("TakeProfitPercent=%0.2f%%\n", bestParams.mTakeProfit);
+					printf("-------------------------------------------------------------------------------------------------\n");
+					printf("\n");
+				}
+			}
+			printf("Random Scenarios Run Complete\n");
+			printf("-------------------------------------------------------------------------------------------------\n");
+			printf("Best Increase in rate of return by trading:%0.2f%%\n", best );
+			printf("BestInitialCapitalAllocation=%0.2f\n", bestParams.mInitialCapitalAllocation);
+			printf("BestFirstBuy=%0.2f\n", bestParams.mFirstBuy);
+			printf("BestRebuy=%0.2f\n", bestParams.mRebuy);
+			printf("BestFirstBuyPercent=%0.2f%%\n", bestParams.mPercentFirstBuy);
+			printf("BestRebuyPercent=%0.2f%%\n", bestParams.mPercentRebuy);
+			printf("TakeProfitPercent=%0.2f%%\n", bestParams.mTakeProfit);
+			printf("-------------------------------------------------------------------------------------------------\n");
+			printf("\n");
+
 			ts->release();
 		}
 	}
@@ -545,6 +621,8 @@ public:
 	stonks::Stonks	*mStonks{nullptr};
 	CommandTypeMap mCommands;
 	stonks::StockList	mStockList;
+	double			mMinPrice{3.0};
+	double			mMaxPrice{4000.0};
 };
 
 Commands *Commands::create(void)

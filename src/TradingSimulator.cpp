@@ -1,13 +1,16 @@
 #include "TradingSimulator.h"
 #include "stonks.h"
 #include "sutil.h"
+#include "StandardDeviation.h"
 
 #include <map>
+#include <unordered_map>
 #include <vector>
 #include <queue>
 
 #pragma warning(disable:4100)
 
+#define SHOW_TRADES 0
 
 namespace stonks
 {
@@ -39,10 +42,9 @@ public:
 	double		mLastPrice{0}; // last price we bought or sold at..
 	uint32_t	mLastDate{0};	// last trading day
 	double		mCurrentPrice{0};
-	bool		mVeryFirstTime{true};
 };
 
-using StockSymbolMap = std::map< std::string, StockSymbol >;
+using StockSymbolMap = std::unordered_map< std::string, StockSymbol >;
 
 class Account
 {
@@ -73,15 +75,23 @@ public:
 		mCurrentDay = mParams.mStartTradingDay;
 		double fraction = 1.0 / double(mStocks.size());
 		double total = 0;
+		double capital = mParams.mStartingCash*mParams.mInitialCapitalAllocation;
 		for (auto &i:mStocks)
 		{
 			double budget = params.mStartingCash * fraction;
 			double shares = budget / i.second.mStartingPrice.mPrice;
 			double currentValue = shares * i.second.mEndingPrice.mPrice;
 			total+=currentValue;
+
+			double c = capital * fraction;
+			double scount = c / i.second.mStartingPrice.mPrice;
+			i.second.mState = SymbolState::own;
+			i.second.mSharesOwned = scount;
+			i.second.mSharesPrice = c;
+			mSettledCash-=c;
 		}
 		mHoldResults = total;
-		printf("Portfolio Return: $%s\n", sutil::formatNumber(int32_t(total)) );
+		//printf("Portfolio Return: $%s\n", sutil::formatNumber(int32_t(total)) );
 	}
 
 	bool simulateDay(void)
@@ -90,47 +100,29 @@ public:
 
 		if ( mCurrentDay > mParams.mEndTradingDay )
 		{
-			double currentValue = mUnsettledCash + mSettledCash;
+			mTradeResults = mUnsettledCash + mSettledCash;
 			for (auto &i:mStocks)
 			{
 				double position = i.second.mSharesOwned*i.second.mCurrentPrice;
-				currentValue+=position;
+				mTradeResults+=position;
 			}
-			printf("Simulation complete: Portfolio Value: $%s vs. Holding:$%s\n", 
-				sutil::formatNumber(int32_t(currentValue)),
-				sutil::formatNumber(int32_t(mHoldResults)));
 
-			double percentTrade = ((currentValue-mParams.mStartingCash)*100) / mParams.mStartingCash;
+//			printf("Simulation complete: Portfolio Value: $%s vs. Holding:$%s\n", 
+//				sutil::formatNumber(int32_t(mTradeResults)),
+//				sutil::formatNumber(int32_t(mHoldResults)));
+
+			double percentTrade = ((mTradeResults-mParams.mStartingCash)*100) / mParams.mStartingCash;
 			double percentHold = ((mHoldResults-mParams.mStartingCash)*100) / mParams.mStartingCash;
-			printf("HOLD:%%%0.2f TRADE:%%%0.2f\n", percentHold, percentTrade);
+
+			mImprovement = percentTrade - percentHold;
+
+//			const char *day = mStonks->indexToDate(mParams.mStartTradingDay);
+//			printf("%s : [%0.2f%%] HOLD:%0.2f%% TRADE:%0.2f%%\n",day, mImprovement, percentHold, percentTrade);
 
 			ret = true;
 		}
 		else
 		{
-#if 0
-			printf("=======================================================\n");
-			printf("Simulate Day:%d\n", mCurrentDay);
-			printf("=======================================================\n");
-
-			printf("Settled Cash:   $%s\n", sutil::formatNumber(mSettledCash));
-			printf("Unsettled Cash: $%s\n", sutil::formatNumber(mUnsettledCash));
-			double stockPosistions=0;
-			for (auto &i:mStocks)
-			{
-				StockSymbol &ss = i.second;
-				if ( ss.mState == SymbolState::own )
-				{
-					double value = ss.mSharesOwned*ss.mCurrentPrice;
-					stockPosistions+=value;
-				}
-			}
-			printf("Stock Value: $%s\n", sutil::formatNumber(stockPosistions));
-			double totalValue = mSettledCash+mUnsettledCash+stockPosistions;
-			printf("Total portfolio value: $%s\n", sutil::formatNumber(totalValue));
-			printf("=======================================================\n");
-#endif
-
 			class PriceChange
 			{
 			public:
@@ -163,6 +155,7 @@ public:
 					}
 				}
 			}
+
 			while ( !pchange.empty() )
 			{
 				PriceChange pcg = pchange.top();
@@ -184,9 +177,8 @@ public:
 							// decide this is a buying opportunity
 							if ( ss.mState == SymbolState::none ) 
 							{
-								if ( percentDifference <= mParams.mPercentFirstBuy || ss.mVeryFirstTime)
+								if ( percentDifference <= mParams.mPercentFirstBuy )
 								{
-									ss.mVeryFirstTime = false;
 									int32_t shares =(int32_t) (mParams.mFirstBuy / p.mPrice)+1;  //how many shares to buy...
 									double cost = double(shares)*p.mPrice;
 									if ( cost <= mSettledCash )
@@ -196,7 +188,9 @@ public:
 										ss.mSharesPrice+=cost;
 										ss.mLastPrice = p.mPrice;
 										mSettledCash-=cost;
+#if SHOW_TRADES
 										printf("Bought %d shares of %s for $%s\n", shares, ss.mSymbol.c_str(), sutil::formatNumber(int32_t(cost)));
+#endif
 									}
 								}
 								if ( p.mPrice > ss.mLastPrice )
@@ -220,7 +214,9 @@ public:
 											ss.mSharesOwned+=double(shares);
 											ss.mSharesPrice+=cost;
 											mSettledCash-=cost;
+#if SHOW_TRADES
 											printf("Bought more %d shares of %s for $%s\n", shares, ss.mSymbol.c_str(), sutil::formatNumber(int32_t(cost)));
+#endif
 										}
 									}
 								}
@@ -236,14 +232,16 @@ public:
 										pc.mTradingDay = mCurrentDay;
 										pc.mAmount = currentValue;
 										mPendingCash.push(pc);
-
 										double profit = currentValue - ss.mSharesPrice;
-										printf("Sold %d shares of %s for $%s banking profit of:$%s\n", 
+										mProfitTaken+=profit;
+#if SHOW_TRADES
+										printf("Sold %d shares of %s for $%s banking profit of:$%s : TotalProfit:$%s\n", 
 											int32_t(ss.mSharesOwned), 
 											ss.mSymbol.c_str(), 
-											sutil::formatNumber(int32_t(currentValue)),
-											sutil::formatNumber(int32_t(profit)));
-
+											sutil::formatNumber(currentValue),
+											sutil::formatNumber(profit),
+											sutil::formatNumber(mProfitTaken));
+#endif
 										ss.mState = SymbolState::none;
 										ss.mLastPrice = p.mPrice;
 										ss.mSharesOwned = 0;
@@ -273,11 +271,11 @@ public:
 			{
 				mSettledCash+=pc.mAmount;
 				mUnsettledCash-=pc.mAmount;
-
+#if 0
 				printf("Settled:$%s : Unsettled:$%s\n",
 					sutil::formatNumber(int32_t(mSettledCash)),
 					sutil::formatNumber(int32_t(mUnsettledCash)));
-
+#endif
 				mPendingCash.pop();
 			}
 			else
@@ -290,11 +288,14 @@ public:
 	TradingParameters	mParams;
 	uint32_t		mCurrentDay{0};
 	double			mHoldResults{0}; // how much money we would have if we just bought and held over this period of time
+	double			mTradeResults{0};
+	double			mImprovement{0};
 	double			mSettledCash{0};
 	double			mUnsettledCash{0};
 	StockSymbolMap	mStocks;
 	PendingCashQueue mPendingCash;
 	Stonks			*mStonks{nullptr};
+	double			mProfitTaken{0};
 };
 
 class TradingSimulatorImpl : public TradingSimulator
@@ -307,15 +308,43 @@ public:
 	{
 		double ret = 0;
 
-		// Step #1 : Build a list of stocks which match this date
-		Account a(params,stocks,s);
+		TradingParameters p = params;
+		uint32_t stopDay = p.mEndTradingDay - 120;
+		(stopDay);
 
-		while ( !a.simulateDay() )
+		uint32_t simCount=0;
+		uint32_t winCount=0;
+
+		std::vector< double > results;
+
+		for (uint32_t i=params.mStartTradingDay; i<stopDay; i++)
 		{
-			// run simulation for each trading day
+			p.mStartTradingDay = i;
+			p.mEndTradingDay = i+60;
+
+			Account a(p,stocks,s);
+
+			while ( !a.simulateDay() )
+			{
+				// run simulation for each trading day
+			}
+
+			if ( a.mTradeResults > a.mHoldResults )
+			{
+				winCount++;
+			}
+
+			results.push_back(a.mImprovement);
+			simCount++;
 		}
 
+		printf("Out of %d simulations %d days were winners.\n", simCount, winCount);
 
+		double mean;
+		double stdev = computeStandardDeviation(uint32_t(results.size()),&results[0],mean);
+		printf("Standard Deviation:%0.2f%% Mean:%0.2f%%\n", stdev, mean );
+
+		ret = mean;
 
 		return ret;
 	}
