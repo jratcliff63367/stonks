@@ -39,4 +39,14 @@ const char * formatNumber(int32_t number) // JWR  format this integer into a fan
 	return dest;
 }
 
+const char * formatNumber(double number) // JWR  format this integer into a fancy comma delimited string
+{
+	return formatNumber(int32_t(number));
+}
+
+const char * formatNumber(uint32_t number) // JWR  format this integer into a fancy comma delimited string
+{
+	return formatNumber(int32_t(number));
+}
+
 }

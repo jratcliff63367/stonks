@@ -18,8 +18,8 @@ API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
 historical_data = False
 nasdaq_csv = False
 company_overview = False
-refresh_history = False
-refresh_daily = True
+refresh_history = True
+refresh_daily = False
 # --------------------------------------------------------- #
 
 csv_location = 'd:\\github\\stonks\\scripts\\tickers.csv'
@@ -210,7 +210,7 @@ def test():
 
 if __name__ == "__main__":
     # daily run
-    test()
+    #test()
 
     db = plyvel.DB(db_dir, create_if_missing=True)
 

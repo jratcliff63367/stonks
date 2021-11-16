@@ -532,8 +532,8 @@ public:
 		if ( ts )
 		{
 			uint32_t currentDay = mStonks->getCurrentDay();
-			params.mEndTradingDay = currentDay;
-			params.mStartTradingDay = currentDay-60;
+			params.mEndTradingDay = currentDay-10;
+			params.mStartTradingDay = currentDay-200;
 			ts->runSimulation(params,mStockList,mStonks);
 			ts->release();
 		}

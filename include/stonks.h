@@ -23,7 +23,7 @@ class Stock
 {
 public:
 
-	bool getPrice(uint32_t tradingDay,Price &price)
+	bool getPrice(uint32_t tradingDay,Price &price) const
 	{
 		bool ret = false;
 
