@@ -39,6 +39,7 @@ public:
 	double		mLastPrice{0}; // last price we bought or sold at..
 	uint32_t	mLastDate{0};	// last trading day
 	double		mCurrentPrice{0};
+	bool		mVeryFirstTime{true};
 };
 
 using StockSymbolMap = std::map< std::string, StockSymbol >;
@@ -169,7 +170,7 @@ public:
 				StockSymbolMap::iterator found = mStocks.find(pcg.mSymbol);
 				if ( found != mStocks.end() )
 				{
-				StockSymbol &ss = (*found).second;
+					StockSymbol &ss = (*found).second;
 					const stonks::Stock *s = mStonks->find(ss.mSymbol);
 					if ( s )
 					{
@@ -183,8 +184,9 @@ public:
 							// decide this is a buying opportunity
 							if ( ss.mState == SymbolState::none ) 
 							{
-								if ( percentDifference <= mParams.mPercentFirstBuy )
+								if ( percentDifference <= mParams.mPercentFirstBuy || ss.mVeryFirstTime)
 								{
+									ss.mVeryFirstTime = false;
 									int32_t shares =(int32_t) (mParams.mFirstBuy / p.mPrice)+1;  //how many shares to buy...
 									double cost = double(shares)*p.mPrice;
 									if ( cost <= mSettledCash )
