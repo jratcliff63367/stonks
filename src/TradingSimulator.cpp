@@ -88,6 +88,7 @@ public:
 			i.second.mState = SymbolState::own;
 			i.second.mSharesOwned = scount;
 			i.second.mSharesPrice = c;
+			i.second.mLastDate = mCurrentDay;
 			mSettledCash-=c;
 		}
 		mHoldResults = total;
@@ -187,6 +188,7 @@ public:
 										ss.mSharesOwned+=double(shares);
 										ss.mSharesPrice+=cost;
 										ss.mLastPrice = p.mPrice;
+										ss.mLastDate = mCurrentDay;
 										mSettledCash-=cost;
 #if SHOW_TRADES
 										printf("Bought %d shares of %s for $%s\n", shares, ss.mSymbol.c_str(), sutil::formatNumber(int32_t(cost)));
@@ -200,7 +202,35 @@ public:
 							}
 							else if ( ss.mState == SymbolState::own )
 							{
-								if ( percentDifference <= mParams.mPercentRebuy )
+								double currentValue = ss.mSharesOwned*p.mPrice;
+								double diffValue = currentValue - ss.mSharesPrice;
+								double percentIncrease = (diffValue*100) / ss.mSharesPrice;
+								uint32_t daysSinceFirstBought = mCurrentDay - ss.mLastDate;
+
+								if ( percentIncrease <= mParams.mMaxLossPercentage && daysSinceFirstBought >= mParams.mMaxLossDays && 0  )
+								{
+									mUnsettledCash+=currentValue;
+									PendingCash pc;
+									pc.mTradingDay = mCurrentDay;
+									pc.mAmount = currentValue;
+									mPendingCash.push(pc);
+
+									double profit = currentValue - ss.mSharesPrice;
+									mProfitTaken+=profit;
+#if SHOW_TRADES || 1
+									printf("Sold %d shares of %s for $%s taking the loss of:$%s : TotalProfit:$%s\n", 
+										int32_t(ss.mSharesOwned), 
+										ss.mSymbol.c_str(), 
+										sutil::formatNumber(currentValue),
+										sutil::formatNumber(-profit),
+										sutil::formatNumber(mProfitTaken));
+#endif
+									ss.mState = SymbolState::none;
+									ss.mLastPrice = p.mPrice;
+									ss.mSharesOwned = 0;
+									ss.mSharesPrice = 0;
+								}
+								else if ( percentDifference <= mParams.mPercentRebuy )
 								{
 									// We cannot rebuy if that would cause us to go over our maximum buy limit
 									if ( ss.mSharesPrice < (mParams.mMaxBuy-mParams.mRebuy) )
@@ -222,9 +252,6 @@ public:
 								}
 								else
 								{
-									double currentValue = ss.mSharesOwned*p.mPrice;
-									double diffValue = currentValue - ss.mSharesPrice;
-									double percentIncrease = (diffValue*100) / ss.mSharesPrice;
 									if ( percentIncrease >= mParams.mTakeProfit)
 									{
 										mUnsettledCash+=currentValue;
@@ -320,7 +347,7 @@ public:
 		for (uint32_t i=params.mStartTradingDay; i<stopDay; i++)
 		{
 			p.mStartTradingDay = i;
-			p.mEndTradingDay = i+60;
+			p.mEndTradingDay = i+120;
 
 			Account a(p,stocks,s);
 

@@ -168,6 +168,19 @@ public:
 						printf("Usage: volatility <stock1> ...\n");
 					}
 					break;
+				case CommandType::show:
+					if ( argc >= 2 )
+					{
+						for (uint32_t i=1; i<argc; i++)
+						{
+							show(argv[i]);
+						}
+					}
+					else
+					{
+						printf("Usage: volatility <stock1> ...\n");
+					}
+					break;
 				case CommandType::filter:
 					filterStocks();
 					break;
@@ -313,6 +326,10 @@ public:
 	{
 		mStockList.clear();
 		FILE *fph = fopen("d:\\github\\stonks\\scripts\\filter.csv","wb");
+		if ( fph )
+		{
+			fprintf(fph,"Symbol,MCAP,PE,DIV,Name,Sector,Industry\n");
+		}
 		uint32_t found = 0;
 		uint32_t count = mStonks->begin();
 		for (uint32_t i=0; i<count; i++)
@@ -359,7 +376,17 @@ public:
 					mStockList.push_back(s->mSymbol);
 					if ( fph )
 					{
-						fprintf(fph,"%s\n", s->mSymbol.c_str() );
+						fprintf(fph,"%s,%s,%s,%s,%0.2f,%0.2f,%0.2f,\"%s\",\"%s\",\"%s\"\n", 
+							s->mSymbol.c_str(),
+							"last-price",
+							"current-price",
+							"change-percent",
+							s->mMarketCapitalization/1000000000.0,
+							s->mPERatio,
+							s->mDividendYield,
+							s->mName.c_str(),
+							s->mSector.c_str(),
+							s->mIndustry.c_str());
 					}
 					printf("%8s : MCAP:%0.2f PE:%0.2f DIV:%0.2f%% : Sector:%s : Name:%s\n", 
 						s->mSymbol.c_str(),
@@ -555,30 +582,38 @@ public:
 		{
 			uint32_t currentDay = mStonks->getCurrentDay();
 			params.mEndTradingDay = currentDay-10;
-			params.mStartTradingDay = currentDay-(12*20*5);
+			params.mStartTradingDay = currentDay-(12*20*4);
 
 			double best = 0;
 			stonks::TradingParameters bestParams;
-			printf("Running 100 random scenarios.\n");
+#define RANDOMIZE 1
+			randomRange(0,1);
+#if RANDOMIZE
+			printf("Running 1,000 random scenarios.\n");
 			for (uint32_t i=0; i<1000; i++)
+#endif
 			{
 
-				params.mInitialCapitalAllocation = randomRange(0.7,1);
-
-				params.mMaxBuy = randomRange(1000,10000);
-				int32_t rebuyCount = int32_t(randomRange(0,5));
+#if RANDOMIZE
+				//params.mInitialCapitalAllocation = randomRange(0.0,1.0);
+				params.mInitialCapitalAllocation = 0;
+				params.mMaxBuy = randomRange(500,10000);
+				int32_t rebuyCount = int32_t(randomRange(0,3));
 				if ( rebuyCount )
 				{
 					params.mFirstBuy = randomRange(params.mMaxBuy/8,params.mMaxBuy);
 					params.mRebuy = (params.mMaxBuy-params.mFirstBuy) / double(rebuyCount);
+					params.mPercentRebuy    = randomRange(-10,-1);
 				}
 				else
 				{
 					params.mFirstBuy = params.mMaxBuy;
+					params.mRebuy = 0;
+					params.mPercentRebuy = 0;
 				}
 				params.mPercentFirstBuy = randomRange(-10,-1);
-				params.mPercentRebuy    = randomRange(-10,-1);
 				params.mTakeProfit      = randomRange(1,10);
+#endif
 
 				double mean = ts->runSimulation(params,mStockList,mStonks);
 
@@ -590,6 +625,7 @@ public:
 					printf("-------------------------------------------------------------------------------------------------\n");
 					printf("Best Increase in rate of return by trading:%0.2f%%\n", best );
 					printf("BestInitialCapitalAllocation=%0.2f\n", bestParams.mInitialCapitalAllocation);
+					printf("BestMaxBuy=%0.2f\n", bestParams.mMaxBuy);
 					printf("BestFirstBuy=%0.2f\n", bestParams.mFirstBuy);
 					printf("BestRebuy=%0.2f\n", bestParams.mRebuy);
 					printf("BestFirstBuyPercent=%0.2f%%\n", bestParams.mPercentFirstBuy);
@@ -603,6 +639,7 @@ public:
 			printf("-------------------------------------------------------------------------------------------------\n");
 			printf("Best Increase in rate of return by trading:%0.2f%%\n", best );
 			printf("BestInitialCapitalAllocation=%0.2f\n", bestParams.mInitialCapitalAllocation);
+			printf("BestMaxBuy=%0.2f\n", bestParams.mMaxBuy);
 			printf("BestFirstBuy=%0.2f\n", bestParams.mFirstBuy);
 			printf("BestRebuy=%0.2f\n", bestParams.mRebuy);
 			printf("BestFirstBuyPercent=%0.2f%%\n", bestParams.mPercentFirstBuy);
@@ -612,6 +649,23 @@ public:
 			printf("\n");
 
 			ts->release();
+		}
+	}
+
+	void show(const char *ticker)
+	{
+		auto s = mStonks->getStock(ticker);
+		if ( s )
+		{
+			printf("TICKER: %s MCAP:%0.2f : PE:%0.2f DIV:%0.2f%%\n",
+				ticker,
+				s->mMarketCapitalization / 1000000000,
+				s->mPERatio,
+				s->mDividendYield*100);
+		}
+		else
+		{
+			printf("Stock Ticker(%s) not found\n", ticker );
 		}
 	}
 

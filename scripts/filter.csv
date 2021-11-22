@@ -1,842 +1,233 @@
-A
-AAP
-AAPL
-ABBV
-ABC
-ABNB
-ABT
-ACGL
-ACGLN
-ACGLO
-ACH
-ACI
-ACM
-ACN
-ADBE
-ADI
-ADM
-ADP
-ADSK
-AEE
-AEM
-AEP
-AEPPL
-AFG
-AFL
-AFRM
-AGL
-AGR
-AJG
-ALB
-ALC
-ALL
-ALLE
-ALLY
-ALNY
-AMAT
-AMCR
-AME
-AMGN
-AMH
-AMOV
-AMP
-AMX
-AMZN
-ANET
-ANSS
-ANTM
-AON
-AOS
-APA
-APD
-APH
-APO
-APP
-APTV
-ARE
-ARES
-ARGX
-ASAN
-ASML
-ATH
-ATO
-ATVI
-AVB
-AVGO
-AVLR
-AVTR
-AVY
-AWK
-AXP
-AZN
-AZO
-BA
-BABA
-BAC
-BAH
-BAM
-BAP
-BAX
-BBL
-BBWI
-BBY
-BCE
-BDX
-BEKE
-BEN
-BEP
-BG
-BGNE
-BHP
-BIDU
-BIIB
-BILI
-BILL
-BIO
-BIP
-BK
-BKI
-BKR
-BLK
-BLL
-BMO
-BMRN
-BMY
-BNS
-BNTX
-BP
-BPYPP
-BR
-BRO
-BSBR
-BSX
-BSY
-BTI
-BUD
-BURL
-BWA
-BX
-BXP
-BZ
-CABO
-CAG
-CAH
-CAJ
-CARR
-CAT
-CB
-CBOE
-CCEP
-CCJ
-CCL
-CCZ
-CDAY
-CDW
-CE
-CEA
-CERN
-CF
-CFG
-CFLT
-CG
-CGABL
-CGNX
-CHD
-CHKP
-CHRW
-CHT
-CHTR
-CHWY
-CI
-CINF
-CL
-CLR
-CLVT
-CLX
-CM
-CMA
-CMCSA
-CME
-CMG
-CMI
-CMS
-CNA
-CNC
-CNHI
-CNI
-CNP
-CNQ
-COF
-COIN
-CONE
-COO
-COP
-COST
-COUP
-CP
-CPB
-CPNG
-CPRT
-CPT
-CQP
-CRH
-CRL
-CRM
-CRWD
-CS
-CSCO
-CSGP
-CSL
-CSX
-CTAS
-CTLT
-CTRA
-CTSH
-CTVA
-CTXS
-CUK
-CVNA
-CVS
-CVX
-CZR
-D
-DAL
-DASH
-DAVA
-DB
-DBX
-DCUE
-DD
-DDOG
-DE
-DELL
-DEO
-DFS
-DG
-DGX
-DHI
-DHR
-DIDI
-DIS
-DISCA
-DISCB
-DISCK
-DISH
-DKNG
-DKS
-DLO
-DLR
-DLTR
-DNA
-DOCN
-DOCS
-DOCU
-DOV
-DOW
-DRE
-DRI
-DT
-DTB
-DTE
-DTP
-DTW
-DTY
-DUK
-DVN
-E
-EA
-EBAY
-EC
-ECL
-ED
-EFX
-EIX
-EL
-ELAN
-ELS
-EMN
-EMR
-ENB
-ENBA
-ENIA
-EOG
-EPAM
-EPD
-EQH
-EQNR
-EQR
-ERIE
-ES
-ESS
-ESTC
-ET
-ETN
-ETR
-ETSY
-EVRG
-EW
-EWBC
-EXC
-EXPD
-EXPE
-EXR
-FANG
-FAST
-FB
-FBHS
-FCX
-FDS
-FDX
-FE
-FERG
-FFIV
-FICO
-FIS
-FISV
-FITBI
-FIVE
-FIVN
-FLT
-FMC
-FMS
-FMX
-FND
-FNF
-FNV
-FOX
-FOXA
-FRC
-FRSH
-FSLR
-FTCH
-FTNT
-FTS
-FTV
-FWONA
-FWONK
-GD
-GDDY
-GDRX
-GDS
-GE
-GFL
-GFS
-GGG
-GH
-GIB
-GILD
-GIS
-GLOB
-GLPI
-GM
-GMAB
-GNRC
-GOLD
-GOOG
-GOOGL
-GPC
-GPN
-GRFS
-GRMN
-GRUB
-GS
-GSK
-GTLB
-GWRE
-GWW
-GXO
-HAL
-HAS
-HCA
-HD
-HDB
-HEI
-HES
-HIG
-HLT
-HMC
-HNP
-HOLX
-HON
-HOOD
-HPE
-HPQ
-HRC
-HRL
-HSBC
-HSIC
-HST
-HSY
-HTHT
-HUBB
-HUBS
-HUM
-HWM
-IAC
-IBKR
-IBM
-ICE
-ICLR
-IDXX
-IEP
-IEX
-IFF
-IHG
-IMO
-INFO
-INFY
-ING
-INTC
-INTU
-INVH
-IP
-IQV
-IR
-IRM
-IS
-ISRG
-IT
-ITUB
-ITW
-IVZ
-IX
-J
-JBHT
-JCI
-JD
-JEF
-JHX
-JKHY
-JLL
-JNJ
-JNPR
-JPM
-K
-KB
-KDP
-KEP
-KEY
-KEYS
-KHC
-KIM
-KKR
-KL
-KLAC
-KMB
-KMI
-KO
-KOF
-KR
-KSU
-L
-LAMR
-LBRDA
-LBRDK
-LBTYA
-LBTYB
-LBTYK
-LCID
-LDOS
-LEA
-LEN
-LEVI
-LFC
-LHX
-LI
-LII
-LIN
-LKQ
-LLY
-LMT
-LNC
-LNT
-LOGI
-LOW
-LPLA
-LRCX
-LSI
-LSXMA
-LSXMB
-LSXMK
-LU
-LULU
-LUMN
-LUV
-LYB
-LYFT
-MA
-MAA
-MANH
-MAR
-MAS
-MASI
-MCD
-MCHP
-MCK
-MCO
-MDB
-MDLZ
-MDT
-MELI
-MET
-MFC
-MGA
-MHK
-MIDD
-MKC
-MKL
-MKTX
-MLM
-MMC
-MMM
-MMP
-MNDY
-MO
-MOH
-MORN
-MOS
-MPC
-MPLX
-MPWR
-MQ
-MRK
-MRNA
-MRO
-MRVL
-MS
-MSCI
-MSFT
-MSI
-MTB
-MTCH
-MTD
-MTN
-MUFG
-NCLH
-NDAQ
-NDSN
-NEE
-NEM
-NET
-NFLX
-NGG
-NICE
-NKE
-NLOK
-NLY
-NOC
-NOW
-NSC
-NTAP
-NTCO
-NTR
-NTRA
-NTRS
-NUE
-NVCR
-NVDA
-NVEI
-NVO
-NVS
-NWL
-NWS
-NWSA
-NXPI
-O
-ODFL
-OKE
-OKTA
-OLPX
-OMC
-ONON
-OPEN
-ORAN
-ORCL
-ORLY
-OTEX
-OTIS
-OXY
-PAGS
-PANW
-PATH
-PAYC
-PAYX
-PBA
-PCAR
-PCG
-PCGU
-PCOR
-PCTY
-PDD
-PEG
-PEN
-PEP
-PFE
-PFG
-PFH
-PG
-PGR
-PH
-PHG
-PHM
-PINS
-PKG
-PKI
-PKX
-PLD
-PLTR
-PM
-PNC
-PNR
-POOL
-PPD
-PPG
-PPL
-PRS
-PRU
-PSA
-PSX
-PTON
-PTR
-PUK
-PXD
-PYPL
-QCOM
-QGEN
-QRVO
-QS
-QSR
-RACE
-RBLX
-RCI
-RCL
-RDY
-RE
-REG
-REGN
-RELX
-REXR
-RH
-RHI
-RIO
-RJF
-RKT
-RMD
-RNG
-ROK
-ROKU
-ROL
-ROP
-ROST
-RPM
-RPRX
-RRX
-RS
-RSG
-RTX
-RUN
-RY
-RYAAY
-S
-SAP
-SBNY
-SBUX
-SC
-SCCO
-SCHW
-SE
-SEDG
-SHG
-SHOP
-SHW
-SITE
-SIVB
-SJM
-SJR
-SKM
-SLB
-SLF
-SNA
-SNAP
-SNN
-SNOW
-SNP
-SNPS
-SNX
-SNY
-SO
-SOFI
-SOJC
-SOJE
-SONY
-SPG
-SPGI
-SPLK
-SPOT
-SQ
-SQM
-SRE
-SSNC
-STE
-STLA
-STLD
-STM
-STT
-STX
-STZ
-SU
-SUI
-SUZ
-SWK
-SWKS
-SWT
-SYF
-SYK
-SYNH
-SYY
-T
-TAK
-TAP
-TBB
-TBC
-TCOM
-TD
-TDG
-TDOC
-TDY
-TEAM
-TECH
-TEF
-TEL
-TER
-TEVA
-TFC
-TFX
-TGT
-TJX
-TLK
-TM
-TME
-TMO
-TMUS
-TOST
-TPL
-TPR
-TREX
-TRGP
-TRI
-TRMB
-TROW
-TRP
-TRU
-TRV
-TS
-TSCO
-TSLA
-TSM
-TSN
-TT
-TTC
-TTD
-TTE
-TTM
-TTWO
-TU
-TW
-TWLO
-TWTR
-TXG
-TXN
-TXT
-U
-UA
-UAA
-UAL
-UBER
-UBS
-UDR
-UHS
-UI
-UL
-ULTA
-UNH
-UNP
-UPS
-UPST
-URI
-USB
-UWMC
-V
-VEDL
-VEEV
-VFC
-VIAC
-VIACA
-VICI
-VIV
-VLO
-VMC
-VMW
-VOD
-VRSK
-VRSN
-VRT
-VRTX
-VTRS
-VZ
-W
-WAB
-WAL
-WAT
-WB
-WBA
-WBK
-WCN
-WDAY
-WEC
-WELL
-WFC
-WHR
-WIX
-WLK
-WLTW
-WM
-WMG
-WMT
-WOLF
-WPC
-WPM
-WPP
-WRB
-WRK
-WSM
-WSO
-WST
-WTRG
-WY
-WYNN
-XEL
-XLNX
-XLRN
-XM
-XOM
-XP
-XPEV
-XRAY
-XYL
-YMM
-YNDX
-YUM
-YUMC
-Z
-ZBH
-ZBRA
-ZEN
-ZG
-ZI
-ZION
-ZM
-ZNH
-ZS
-ZTO
-ZTS
+Symbol,MCAP,PE,DIV,Name,Sector,Industry
+ABBV,last-price,current-price,change-percent,206.19,27.80,0.04,"AbbVie Inc","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+ACGLO,last-price,current-price,change-percent,15.10,5.22,0.05,"Arch Capital Group Ltd","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+ADM,last-price,current-price,change-percent,36.04,17.34,0.02,"Archer-Daniels-Midland Company","MANUFACTURING","FATS & OILS"
+AEE,last-price,current-price,change-percent,21.52,21.77,0.03,"Ameren Corporation","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+AEM,last-price,current-price,change-percent,14.07,25.57,0.02,"Agnico Eagle Mines Limited","ENERGY & TRANSPORTATION","GOLD AND SILVER ORES"
+AEP,last-price,current-price,change-percent,41.87,17.46,0.04,"American Electric Power Company Inc","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+AFL,last-price,current-price,change-percent,37.06,8.40,0.02,"Aflac Incorporated","FINANCE","ACCIDENT & HEALTH INSURANCE"
+AGR,last-price,current-price,change-percent,19.69,24.28,0.04,"Avangrid Inc","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+ALL,last-price,current-price,change-percent,32.71,5.60,0.03,"The Allstate Corporation","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+AMCR,last-price,current-price,change-percent,18.95,20.36,0.04,"Amcor plc","MANUFACTURING","MISCELLANEOUS MANUFACTURING INDUSTRIES"
+AMGN,last-price,current-price,change-percent,119.40,21.85,0.03,"Amgen Inc","LIFE SCIENCES","BIOLOGICAL PRODUCTS, (NO DISGNOSTIC SUBSTANCES)"
+AMOV,last-price,current-price,change-percent,59.12,12.21,0.02,"America Movil S.A.B.DE C.V.","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+AMX,last-price,current-price,change-percent,59.53,12.29,0.02,"America Movil S.A.B.DE C.V.","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+APO,last-price,current-price,change-percent,32.43,9.00,0.03,"Apollo Global Management Inc","FINANCE","INVESTMENT ADVICE"
+ARE,last-price,current-price,change-percent,31.53,40.04,0.02,"Alexandria Real Estate Equities Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+ARES,last-price,current-price,change-percent,14.72,45.83,0.02,"Ares Management Corporation","FINANCE","INVESTMENT ADVICE"
+ATO,last-price,current-price,change-percent,12.39,17.78,0.03,"Atmos Energy Corporation","ENERGY & TRANSPORTATION","NATURAL GAS DISTRIBUTION"
+AVB,last-price,current-price,change-percent,33.53,54.08,0.03,"AvalonBay Communities Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+AVGO,last-price,current-price,change-percent,225.88,40.67,0.03,"Broadcom Inc","MANUFACTURING","SEMICONDUCTORS & RELATED DEVICES"
+AZN,last-price,current-price,change-percent,196.42,43.83,0.04,"AstraZeneca PLC","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+BAP,last-price,current-price,change-percent,10.15,29.27,0.04,"Credicorp Ltd","FINANCE","COMMERCIAL BANKS, NEC"
+BBL,last-price,current-price,change-percent,134.66,9.79,0.06,"BHP Group","TECHNOLOGY","GENERAL"
+BBY,last-price,current-price,change-percent,32.66,13.59,0.02,"Best Buy Co. Inc","TRADE & SERVICES","RETAIL-RADIO, TV & CONSUMER ELECTRONICS STORES"
+BCE,last-price,current-price,change-percent,46.65,20.48,0.07,"BCE Inc","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+BEN,last-price,current-price,change-percent,17.80,9.94,0.03,"Franklin Resources Inc","FINANCE","INVESTMENT ADVICE"
+BG,last-price,current-price,change-percent,13.23,5.93,0.02,"Bunge Limited","MANUFACTURING","FATS & OILS"
+BHP,last-price,current-price,change-percent,134.23,10.44,0.06,"BHP Group","ENERGY & TRANSPORTATION","METAL MINING"
+BIP,last-price,current-price,change-percent,17.47,23.13,0.03,"Brookfield Infrastructure Partners L.P","ENERGY & TRANSPORTATION","WATER TRANSPORTATION"
+BK,last-price,current-price,change-percent,49.54,15.28,0.02,"The Bank of New York Mellon Corporation","FINANCE","STATE COMMERCIAL BANKS"
+BMO,last-price,current-price,change-percent,72.49,13.99,0.04,"Bank of Montreal","FINANCE","COMMERCIAL BANKS, NEC"
+BMY,last-price,current-price,change-percent,131.82,68.90,0.03,"Bristol-Myers Squibb Company","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+BNS,last-price,current-price,change-percent,80.81,11.52,0.05,"The Bank of Nova Scotia","FINANCE","STATE COMMERCIAL BANKS"
+BSBR,last-price,current-price,change-percent,47.12,8.28,0.26,"Banco Santander (Brasil) S.A","FINANCE","COMMERCIAL BANKS, NEC"
+BTI,last-price,current-price,change-percent,79.21,7.83,0.06,"British American Tobacco p.l.c","MANUFACTURING","CIGARETTES"
+BX,last-price,current-price,change-percent,100.99,19.39,0.03,"The Blackstone Group Inc","FINANCE","INVESTMENT ADVICE"
+BXP,last-price,current-price,change-percent,18.50,75.26,0.03,"Boston Properties Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+CAG,last-price,current-price,change-percent,15.61,10.87,0.04,"Conagra Brands Inc","MANUFACTURING","FOOD AND KINDRED PRODUCTS"
+CAH,last-price,current-price,change-percent,14.00,9.82,0.03,"Cardinal Health Inc","TRADE & SERVICES","WHOLESALE-DRUGS, PROPRIETARIES & DRUGGISTS' SUNDRIES"
+CAJ,last-price,current-price,change-percent,30.33,32.30,0.05,"Canon Inc","LIFE SCIENCES","PHOTOGRAPHIC EQUIPMENT & SUPPLIES"
+CAT,last-price,current-price,change-percent,113.50,36.24,0.02,"Caterpillar Inc","TECHNOLOGY","CONSTRUCTION MACHINERY & EQUIP"
+CCEP,last-price,current-price,change-percent,26.07,36.72,0.02,"Coca-Cola Europacific Partners plc Ordinary Shares","MANUFACTURING","BOTTLED & CANNED SOFT DRINKS & CARBONATED WATERS"
+CCZ,last-price,current-price,change-percent,59.56,53.65,0.03,"Comcast Holdings Corp","TECHNOLOGY","CABLE & OTHER PAY TELEVISION SERVICES"
+CFG,last-price,current-price,change-percent,20.39,11.58,0.03,"Citizens Financial Group Inc","FINANCE","STATE COMMERCIAL BANKS"
+CHRW,last-price,current-price,change-percent,12.08,16.47,0.02,"C.H. Robinson Worldwide Inc","ENERGY & TRANSPORTATION","ARRANGEMENT OF TRANSPORTATION OF FREIGHT & CARGO"
+CHT,last-price,current-price,change-percent,31.37,24.55,0.11,"Chunghwa Telecom Co. Ltd","TECHNOLOGY","RADIOTELEPHONE COMMUNICATIONS"
+CINF,last-price,current-price,change-percent,19.78,7.91,0.02,"Cincinnati Financial Corporation","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+CL,last-price,current-price,change-percent,65.78,24.76,0.02,"Colgate-Palmolive Company","LIFE SCIENCES","PERFUMES, COSMETICS & OTHER TOILET PREPARATIONS"
+CLX,last-price,current-price,change-percent,20.17,47.36,0.03,"The Clorox Company","LIFE SCIENCES","SPECIALTY CLEANING, POLISHING AND SANITATION PREPARATIONS"
+CM,last-price,current-price,change-percent,53.13,16.05,0.05,"Canadian Imperial Bank of Commerce","FINANCE","COMMERCIAL BANKS, NEC"
+CMA,last-price,current-price,change-percent,11.66,11.07,0.03,"Comerica Incorporated","FINANCE","NATIONAL COMMERCIAL BANKS"
+CMI,last-price,current-price,change-percent,34.00,19.54,0.02,"Cummins Inc","TECHNOLOGY","ENGINES & TURBINES"
+CMS,last-price,current-price,change-percent,17.40,23.89,0.03,"CMS Energy Corporation","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+CNA,last-price,current-price,change-percent,12.46,18.13,0.03,"CNA Financial Corporation","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+CNP,last-price,current-price,change-percent,16.68,17.73,0.02,"CenterPoint Energy Inc","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+CNQ,last-price,current-price,change-percent,51.23,10.94,0.04,"Canadian Natural Resources Limited","ENERGY & TRANSPORTATION","CRUDE PETROLEUM & NATURAL GAS"
+COP,last-price,current-price,change-percent,96.59,19.86,0.02,"ConocoPhillips","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+CPB,last-price,current-price,change-percent,12.47,12.50,0.04,"Campbell Soup Company","MANUFACTURING","FOOD AND KINDRED PRODUCTS"
+CQP,last-price,current-price,change-percent,20.84,18.70,0.06,"Cheniere Energy Partners L.P","ENERGY & TRANSPORTATION","NATURAL GAS DISTRIBUTION"
+CRH,last-price,current-price,change-percent,39.41,26.40,0.02,"CRH plc","MANUFACTURING","CEMENT, HYDRAULIC"
+CSCO,last-price,current-price,change-percent,239.73,22.74,0.03,"Cisco Systems Inc","TECHNOLOGY","COMPUTER COMMUNICATIONS EQUIPMENT"
+CTRA,last-price,current-price,change-percent,16.94,23.69,0.02,"COTERRA ENERGY INC","ENERGY & TRANSPORTATION","CRUDE PETROLEUM & NATURAL GAS"
+CVS,last-price,current-price,change-percent,122.45,14.69,0.02,"CVS Health Corporation","TRADE & SERVICES","RETAIL-DRUG STORES AND PROPRIETARY STORES"
+CVX,last-price,current-price,change-percent,223.61,22.50,0.05,"Chevron Corporation","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+D,last-price,current-price,change-percent,60.80,23.67,0.03,"Dominion Energy Inc","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+DCUE,last-price,current-price,change-percent,60.25,31.53,0.03,"Dominion Energy Inc","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+DOW,last-price,current-price,change-percent,44.14,7.75,0.05,"Dow Inc","LIFE SCIENCES","PLASTIC MATERIALS, SYNTH RESINS & NONVULCAN ELASTOMERS"
+DTE,last-price,current-price,change-percent,21.92,15.61,0.04,"DTE Energy Company","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+DUK,last-price,current-price,change-percent,78.44,37.43,0.04,"Duke Energy Corporation","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+E,last-price,current-price,change-percent,52.93,29.93,0.02,"Eni S.p.A","ENERGY & TRANSPORTATION","CRUDE PETROLEUM & NATURAL GAS"
+ED,last-price,current-price,change-percent,27.53,18.69,0.04,"Consolidated Edison Inc","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+EIX,last-price,current-price,change-percent,24.54,13.84,0.04,"Edison International","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+EMN,last-price,current-price,change-percent,15.10,16.99,0.02,"Eastman Chemical Company","LIFE SCIENCES","PLASTIC MATERIALS, SYNTH RESINS & NONVULCAN ELASTOMERS"
+EMR,last-price,current-price,change-percent,58.29,23.92,0.02,"Emerson Electric Co","MANUFACTURING","ELECTRONIC & OTHER ELECTRICAL EQUIPMENT (NO COMPUTER EQUIP)"
+ENB,last-price,current-price,change-percent,85.69,18.92,0.08,"Enbridge Inc","ENERGY & TRANSPORTATION","PIPE LINES (NO NATURAL GAS)"
+EPD,last-price,current-price,change-percent,49.60,11.50,0.08,"Enterprise Products Partners L.P","ENERGY & TRANSPORTATION","NATURAL GAS TRANSMISSION"
+EQNR,last-price,current-price,change-percent,87.29,30.74,0.02,"Equinor ASA","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+EQR,last-price,current-price,change-percent,32.11,30.33,0.03,"Equity Residential","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+ES,last-price,current-price,change-percent,28.79,23.69,0.03,"Eversource Energy","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+ESS,last-price,current-price,change-percent,22.24,49.73,0.02,"Essex Property Trust Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+ET,last-price,current-price,change-percent,24.66,5.08,0.07,"Energy Transfer LP","ENERGY & TRANSPORTATION","NATURAL GAS TRANSMISSION"
+ETR,last-price,current-price,change-percent,20.56,14.42,0.04,"Entergy Corporation","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+EVRG,last-price,current-price,change-percent,14.79,16.81,0.03,"Evergy Inc","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+EXC,last-price,current-price,change-percent,53.27,31.84,0.03,"Exelon Corporation","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+EXR,last-price,current-price,change-percent,26.35,36.55,0.02,"Extra Space Storage Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+FE,last-price,current-price,change-percent,21.21,14.83,0.04,"FirstEnergy Corp","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+FITBI,last-price,current-price,change-percent,19.80,7.82,0.04,"Fifth Third Bancorp","FINANCE","STATE COMMERCIAL BANKS"
+FMS,last-price,current-price,change-percent,17.09,13.01,0.04,"Fresenius Medical Care AG & Co. KGaA","LIFE SCIENCES","SERVICES-MISC HEALTH & ALLIED SERVICES, NEC"
+FNF,last-price,current-price,change-percent,14.43,9.99,0.03,"Fidelity National Financial Inc","FINANCE","TITLE INSURANCE"
+FTS,last-price,current-price,change-percent,21.56,21.58,0.04,"Fortis Inc","TECHNOLOGY","GENERAL"
+GD,last-price,current-price,change-percent,56.65,18.44,0.02,"General Dynamics Corporation","MANUFACTURING","SHIP & BOAT BUILDING & REPAIRING"
+GILD,last-price,current-price,change-percent,84.58,11.54,0.04,"Gilead Sciences Inc","LIFE SCIENCES","BIOLOGICAL PRODUCTS, (NO DISGNOSTIC SUBSTANCES)"
+GIS,last-price,current-price,change-percent,38.26,16.21,0.03,"General Mills Inc","MANUFACTURING","GRAIN MILL PRODUCTS"
+GLPI,last-price,current-price,change-percent,11.54,19.33,0.05,"Gaming and Leisure Properties Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+GPC,last-price,current-price,change-percent,19.19,47.80,0.02,"Genuine Parts Company","TRADE & SERVICES","WHOLESALE-MOTOR VEHICLE SUPPLIES & NEW PARTS"
+GRFS,last-price,current-price,change-percent,12.11,21.44,0.03,"Grifols S.A","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+HAS,last-price,current-price,change-percent,13.55,29.96,0.03,"Hasbro Inc","MANUFACTURING","GAMES, TOYS & CHILDREN'S VEHICLES (NO DOLLS & BICYCLES)"
+HMC,last-price,current-price,change-percent,49.79,6.31,0.03,"Honda Motor Co. Ltd","MANUFACTURING","MOTOR VEHICLES & PASSENGER CAR BODIES"
+HPE,last-price,current-price,change-percent,20.56,22.01,0.03,"Hewlett Packard Enterprise Company","TRADE & SERVICES","WHOLESALE-COMPUTERS & PERIPHERAL EQUIPMENT & SOFTWARE"
+HPQ,last-price,current-price,change-percent,36.81,9.93,0.02,"HP Inc","TECHNOLOGY","COMPUTER & OFFICE EQUIPMENT"
+HRL,last-price,current-price,change-percent,23.60,26.18,0.02,"Hormel Foods Corporation","MANUFACTURING","MEAT PACKING PLANTS"
+IBM,last-price,current-price,change-percent,111.69,10.32,0.05,"International Business Machines Corporation","TECHNOLOGY","COMPUTER & OFFICE EQUIPMENT"
+IFF,last-price,current-price,change-percent,38.98,35.21,0.02,"International Flavors & Fragrances Inc","LIFE SCIENCES","INDUSTRIAL ORGANIC CHEMICALS"
+IMO,last-price,current-price,change-percent,23.80,55.43,0.03,"Imperial Oil Limited","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+ING,last-price,current-price,change-percent,58.99,11.20,0.03,"ING Groep N.V","FINANCE","COMMERCIAL BANKS, NEC"
+INTC,last-price,current-price,change-percent,208.23,9.84,0.03,"Intel Corporation","MANUFACTURING","SEMICONDUCTORS & RELATED DEVICES"
+IP,last-price,current-price,change-percent,19.32,10.98,0.04,"International Paper Company","MANUFACTURING","PAPER MILLS"
+IR,last-price,current-price,change-percent,24.19,59.02,0.04,"Ingersoll Rand Inc","TECHNOLOGY","GENERAL INDUSTRIAL MACHINERY & EQUIPMENT"
+IRM,last-price,current-price,change-percent,13.78,33.12,0.05,"Iron Mountain Incorporated","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+ITUB,last-price,current-price,change-percent,40.68,7.78,0.11,"Itau Unibanco Holding S.A.","FINANCE","STATE COMMERCIAL BANKS"
+IVZ,last-price,current-price,change-percent,12.00,13.17,0.03,"Invesco Ltd","FINANCE","INVESTMENT ADVICE"
+IX,last-price,current-price,change-percent,25.54,14.75,0.82,"ORIX Corporation","FINANCE","MISCELLANEOUS BUSINESS CREDIT INSTITUTION"
+JNJ,last-price,current-price,change-percent,428.73,24.34,0.03,"Johnson & Johnson","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+JNPR,last-price,current-price,change-percent,10.33,70.57,0.03,"Juniper Networks Inc","TECHNOLOGY","COMPUTER COMMUNICATIONS EQUIPMENT"
+JPM,last-price,current-price,change-percent,497.55,10.65,0.02,"JPMorgan Chase & Co","FINANCE","NATIONAL COMMERCIAL BANKS"
+K,last-price,current-price,change-percent,21.47,16.28,0.04,"Kellogg Company","MANUFACTURING","GRAIN MILL PRODUCTS"
+KB,last-price,current-price,change-percent,19.65,6.71,0.05,"KB Financial Group Inc","FINANCE","COMMERCIAL BANKS, NEC"
+KEP,last-price,current-price,change-percent,12.72,7.37,0.06,"Korea Electric Power Corporation","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+KEY,last-price,current-price,change-percent,22.54,9.43,0.03,"KeyCorp","FINANCE","NATIONAL COMMERCIAL BANKS"
+KHC,last-price,current-price,change-percent,45.94,20.18,0.04,"The Kraft Heinz Company","MANUFACTURING","CANNED, FROZEN & PRESERVD FRUIT, VEG & FOOD SPECIALTIES"
+KIM,last-price,current-price,change-percent,14.33,10.25,0.03,"Kimco Realty Corporation","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+KMB,last-price,current-price,change-percent,44.63,16.57,0.03,"Kimberly-Clark Corporation","MANUFACTURING","CONVERTED PAPER & PAPERBOARD PRODS (NO CONTANERS/BOXES)"
+KMI,last-price,current-price,change-percent,41.15,27.95,0.06,"Kinder Morgan Inc","ENERGY & TRANSPORTATION","NATURAL GAS TRANSMISSION"
+KO,last-price,current-price,change-percent,244.00,30.75,0.03,"The Coca-Cola Company","MANUFACTURING","BEVERAGES"
+KOF,last-price,current-price,change-percent,11.33,17.62,0.93,"Coca-Cola FEMSA S.A.B. de C.V","MANUFACTURING","BOTTLED & CANNED SOFT DRINKS & CARBONATED WATERS"
+LAMR,last-price,current-price,change-percent,12.17,32.59,0.02,"Lamar Advertising Company (REIT)","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+LFC,last-price,current-price,change-percent,107.46,5.21,0.07,"China Life Insurance Company Limited","FINANCE","LIFE INSURANCE"
+LMT,last-price,current-price,change-percent,93.26,13.76,0.03,"Lockheed Martin Corporation","MANUFACTURING","GUIDED MISSILES & SPACE VEHICLES & PARTS"
+LNC,last-price,current-price,change-percent,13.05,28.51,0.02,"Lincoln National Corporation","FINANCE","LIFE INSURANCE"
+LNT,last-price,current-price,change-percent,13.85,21.83,0.03,"Alliant Energy Corporation","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+LSI,last-price,current-price,change-percent,10.74,61.59,0.02,"Life Storage Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+LYB,last-price,current-price,change-percent,30.89,16.90,0.05,"LyondellBasell Industries N.V","LIFE SCIENCES","INDUSTRIAL ORGANIC CHEMICALS"
+MAA,last-price,current-price,change-percent,23.35,54.41,0.02,"Mid-America Apartment Communities Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+MCD,last-price,current-price,change-percent,189.15,26.10,0.02,"McDonald's Corporation","TRADE & SERVICES","RETAIL-EATING PLACES"
+MDLZ,last-price,current-price,change-percent,86.81,19.81,0.02,"Mondelez International Inc","MANUFACTURING","FOOD AND KINDRED PRODUCTS"
+MET,last-price,current-price,change-percent,53.96,11.08,0.03,"MetLife Inc","FINANCE","LIFE INSURANCE"
+MFC,last-price,current-price,change-percent,38.77,7.68,0.06,"Manulife Financial Corporation","FINANCE","LIFE INSURANCE"
+MGA,last-price,current-price,change-percent,25.33,14.26,0.02,"Magna International Inc","MANUFACTURING","MOTOR VEHICLE PARTS & ACCESSORIES"
+MMM,last-price,current-price,change-percent,103.60,17.78,0.03,"3M Company","LIFE SCIENCES","SURGICAL & MEDICAL INSTRUMENTS & APPARATUS"
+MMP,last-price,current-price,change-percent,10.24,13.25,0.09,"Magellan Midstream Partners L.P","ENERGY & TRANSPORTATION","PIPE LINES (NO NATURAL GAS)"
+MO,last-price,current-price,change-percent,82.21,12.07,0.08,"Altria Group Inc","MANUFACTURING","CIGARETTES"
+MPC,last-price,current-price,change-percent,41.32,25.19,0.04,"Marathon Petroleum Corporation","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+MPLX,last-price,current-price,change-percent,31.36,11.35,0.09,"MPLX LP","ENERGY & TRANSPORTATION","PIPE LINES (NO NATURAL GAS)"
+MRK,last-price,current-price,change-percent,208.95,17.31,0.03,"Merck & Co. Inc","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+MS,last-price,current-price,change-percent,175.44,15.12,0.02,"Morgan Stanley","FINANCE","SECURITY BROKERS, DEALERS & FLOTATION COMPANIES"
+MTB,last-price,current-price,change-percent,19.90,10.52,0.03,"M&T Bank Corporation","FINANCE","STATE COMMERCIAL BANKS"
+MUFG,last-price,current-price,change-percent,72.13,6.22,0.04,"Mitsubishi UFJ Financial Group Inc","FINANCE","COMMERCIAL BANKS, NEC"
+NEM,last-price,current-price,change-percent,46.39,18.05,0.04,"Newmont Corporation","ENERGY & TRANSPORTATION","GOLD AND SILVER ORES"
+NLOK,last-price,current-price,change-percent,14.56,16.73,0.02,"NortonLifeLock Inc","TECHNOLOGY","SERVICES-PREPACKAGED SOFTWARE"
+NLY,last-price,current-price,change-percent,12.50,4.45,0.10,"Annaly Capital Management Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+NTAP,last-price,current-price,change-percent,20.44,24.39,0.02,"NetApp Inc","TECHNOLOGY","COMPUTER STORAGE DEVICES"
+NTR,last-price,current-price,change-percent,39.36,17.28,0.03,"Nutrien Ltd","LIFE SCIENCES","AGRICULTURAL CHEMICALS"
+NTRS,last-price,current-price,change-percent,25.98,19.73,0.02,"Northern Trust Corporation","FINANCE","STATE COMMERCIAL BANKS"
+NVO,last-price,current-price,change-percent,202.85,40.29,0.08,"Novo Nordisk A/S","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+NVS,last-price,current-price,change-percent,204.67,18.87,0.04,"Novartis AG","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+NWL,last-price,current-price,change-percent,10.35,17.26,0.04,"Newell Brands Inc","MANUFACTURING","PLASTICS PRODUCTS, NEC"
+O,last-price,current-price,change-percent,40.25,51.54,0.04,"Realty Income Corporation","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+OKE,last-price,current-price,change-percent,28.93,25.79,0.06,"ONEOK Inc","ENERGY & TRANSPORTATION","NATURAL GAS TRANSMISISON & DISTRIBUTION"
+OMC,last-price,current-price,change-percent,14.78,10.83,0.04,"Omnicom Group Inc","TRADE & SERVICES","SERVICES-ADVERTISING AGENCIES"
+ORAN,last-price,current-price,change-percent,30.08,31.68,0.05,"Orange S.A","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+PAYX,last-price,current-price,change-percent,44.58,36.79,0.02,"Paychex Inc","TRADE & SERVICES","SERVICES-ENGINEERING, ACCOUNTING, RESEARCH, MANAGEMENT"
+PBA,last-price,current-price,change-percent,22.97,26.24,0.08,"Pembina Pipeline Corporation","ENERGY & TRANSPORTATION","OIL & GAS FIELD EXPLORATION SERVICES"
+PEG,last-price,current-price,change-percent,31.44,17.48,0.03,"Public Service Enterprise Group Incorporated","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+PEP,last-price,current-price,change-percent,225.06,27.73,0.03,"PepsiCo Inc","MANUFACTURING","BEVERAGES"
+PFE,last-price,current-price,change-percent,281.34,14.33,0.03,"Pfizer Inc","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+PFG,last-price,current-price,change-percent,18.35,11.13,0.03,"Principal Financial Group Inc","FINANCE","ACCIDENT & HEALTH INSURANCE"
+PG,last-price,current-price,change-percent,355.30,25.47,0.02,"The Procter & Gamble Company","LIFE SCIENCES","SOAP, DETERGENTS, CLEANG PREPARATIONS, PERFUMES, COSMETICS"
+PGR,last-price,current-price,change-percent,55.84,9.88,0.05,"The Progressive Corporation","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+PKG,last-price,current-price,change-percent,12.75,23.32,0.03,"Packaging Corporation of America","MANUFACTURING","PAPERBOARD CONTAINERS & BOXES"
+PKX,last-price,current-price,change-percent,20.27,11.92,0.04,"POSCO","MANUFACTURING","STEEL WORKS, BLAST FURNACES & ROLLING MILLS (COKE OVENS)"
+PM,last-price,current-price,change-percent,145.83,17.57,0.05,"Philip Morris International Inc","MANUFACTURING","CIGARETTES"
+PNC,last-price,current-price,change-percent,87.50,16.08,0.02,"The PNC Financial Services Group Inc","FINANCE","NATIONAL COMMERCIAL BANKS"
+PRU,last-price,current-price,change-percent,41.42,5.98,0.04,"Prudential Financial Inc","FINANCE","LIFE INSURANCE"
+PSA,last-price,current-price,change-percent,57.37,51.62,0.02,"Public Storage","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+QSR,last-price,current-price,change-percent,18.03,23.52,0.04,"Restaurant Brands International Inc","TRADE & SERVICES","RETAIL-EATING PLACES"
+RCI,last-price,current-price,change-percent,24.71,18.96,0.04,"Rogers Communications Inc","TECHNOLOGY","CABLE & OTHER PAY TELEVISION SERVICES"
+RDY,last-price,current-price,change-percent,10.80,41.19,0.39,"Dr. Reddy's Laboratories Limited","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+RE,last-price,current-price,change-percent,10.64,11.99,0.02,"Everest Re Group Ltd","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+REG,last-price,current-price,change-percent,12.87,38.74,0.03,"Regency Centers Corporation","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+RIO,last-price,current-price,change-percent,102.01,5.47,0.12,"Rio Tinto Group","TECHNOLOGY","GENERAL"
+RTX,last-price,current-price,change-percent,133.29,40.48,0.02,"Raytheon Technologies Corporation","MANUFACTURING","AIRCRAFT ENGINES & ENGINE PARTS"
+RY,last-price,current-price,change-percent,151.05,14.21,0.04,"Royal Bank of Canada","FINANCE","COMMERCIAL BANKS, NEC"
+SCCO,last-price,current-price,change-percent,47.72,15.13,0.05,"Southern Copper Corporation","ENERGY & TRANSPORTATION","METAL MINING"
+SJM,last-price,current-price,change-percent,13.93,16.16,0.03,"The J. M. Smucker Company","MANUFACTURING","CANNED, FRUITS, VEG, PRESERVES, JAMS & JELLIES"
+SJR,last-price,current-price,change-percent,14.74,18.35,0.04,"Shaw Communications Inc","TECHNOLOGY","CABLE & OTHER PAY TELEVISION SERVICES"
+SKM,last-price,current-price,change-percent,11.68,10.92,0.04,"SK Telecom Co.Ltd","TECHNOLOGY","RADIOTELEPHONE COMMUNICATIONS"
+SLF,last-price,current-price,change-percent,33.02,16.98,0.04,"Sun Life Financial Inc","FINANCE","LIFE INSURANCE"
+SNA,last-price,current-price,change-percent,11.82,15.02,0.02,"Snap-on Incorporated","MANUFACTURING","CUTLERY, HANDTOOLS & GENERAL HARDWARE"
+SNY,last-price,current-price,change-percent,131.24,18.14,0.06,"Sanofi","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+SO,last-price,current-price,change-percent,66.82,22.51,0.04,"The Southern Company","ENERGY & TRANSPORTATION","ELECTRIC SERVICES"
+SONY,last-price,current-price,change-percent,150.19,18.12,0.49,"Sony Group Corporation","MANUFACTURING","HOUSEHOLD AUDIO & VIDEO EQUIPMENT"
+SPG,last-price,current-price,change-percent,55.04,42.24,0.03,"Simon Property Group Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+SRE,last-price,current-price,change-percent,38.83,34.88,0.03,"Sempra","ENERGY & TRANSPORTATION","GAS & OTHER SERVICES COMBINED"
+STLA,last-price,current-price,change-percent,64.19,4.36,0.13,"Stellantis N.V","MANUFACTURING","MOTOR VEHICLES & PASSENGER CAR BODIES"
+STT,last-price,current-price,change-percent,36.01,14.51,0.02,"State Street Corporation","FINANCE","STATE COMMERCIAL BANKS"
+STX,last-price,current-price,change-percent,23.43,15.49,0.03,"Seagate Technology Holdings plc","TECHNOLOGY","COMPUTER STORAGE DEVICES"
+SU,last-price,current-price,change-percent,38.26,32.68,0.03,"Suncor Energy Inc","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+SYY,last-price,current-price,change-percent,40.27,47.86,0.02,"Sysco Corporation","TRADE & SERVICES","WHOLESALE-GROCERIES & RELATED PRODUCTS"
+TAK,last-price,current-price,change-percent,45.61,18.87,0.04,"Takeda Pharmaceutical Company Limited","LIFE SCIENCES","PHARMACEUTICAL PREPARATIONS"
+TBB,last-price,current-price,change-percent,178.17,24.25,0.08,"AT&T Inc. 5.35% GLB NTS 66","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+TBC,last-price,current-price,change-percent,176.45,24.02,0.05,"AT&T Inc. 5.625% Global Notes d","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+TD,last-price,current-price,change-percent,134.73,10.81,0.04,"The Toronto-Dominion Bank","TECHNOLOGY","GENERAL"
+TEF,last-price,current-price,change-percent,25.65,2.13,0.12,"Telefonica S.A","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+TFC,last-price,current-price,change-percent,84.69,14.97,0.03,"Truist Financial Corporation","FINANCE","NATIONAL COMMERCIAL BANKS"
+TM,last-price,current-price,change-percent,248.42,5.46,0.15,"Toyota Motor Corporation","MANUFACTURING","MOTOR VEHICLES & PASSENGER CAR BODIES"
+TRP,last-price,current-price,change-percent,49.56,12.65,0.07,"TC Energy Corporation","ENERGY & TRANSPORTATION","NATURAL GAS TRANSMISSION"
+TRV,last-price,current-price,change-percent,38.89,11.07,0.02,"The Travelers Companies Inc","FINANCE","FIRE, MARINE & CASUALTY INSURANCE"
+TSN,last-price,current-price,change-percent,30.11,12.12,0.02,"Tyson Foods Inc","MANUFACTURING","POULTRY SLAUGHTERING AND PROCESSING"
+TTE,last-price,current-price,change-percent,134.26,12.72,0.06,"TotalEnergies SE","ENERGY & TRANSPORTATION","CRUDE PETROLEUM & NATURAL GAS"
+TU,last-price,current-price,change-percent,30.03,26.74,0.05,"TELUS Corporation","TECHNOLOGY","RADIOTELEPHONE COMMUNICATIONS"
+TXN,last-price,current-price,change-percent,174.18,24.22,0.02,"Texas Instruments Incorporated","MANUFACTURING","SEMICONDUCTORS & RELATED DEVICES"
+UBS,last-price,current-price,change-percent,63.27,8.58,0.02,"UBS Group AG","FINANCE","NATIONAL COMMERCIAL BANKS"
+UL,last-price,current-price,change-percent,136.28,17.80,0.03,"Unilever PLC","LIFE SCIENCES","SOAP, DETERGENTS, CLEANG PREPARATIONS, PERFUMES, COSMETICS"
+USB,last-price,current-price,change-percent,89.07,17.17,0.03,"U.S. Bancorp","FINANCE","NATIONAL COMMERCIAL BANKS"
+VEDL,last-price,current-price,change-percent,15.37,6.12,0.08,"Vedanta Limited","ENERGY & TRANSPORTATION","METAL MINING"
+VFC,last-price,current-price,change-percent,29.67,45.02,0.03,"V.F. Corporation","MANUFACTURING","MEN'S & BOYS' FURNISHGS, WORK CLOTHG, & ALLIED GARMENTS"
+VIAC,last-price,current-price,change-percent,23.16,6.96,0.03,"ViacomCBS Inc","TECHNOLOGY","TELEVISION BROADCASTING STATIONS"
+VIACA,last-price,current-price,change-percent,23.38,7.57,0.03,"ViacomCBS Inc","TECHNOLOGY","TELEVISION BROADCASTING STATIONS"
+VICI,last-price,current-price,change-percent,18.27,15.79,0.05,"VICI Properties Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+VIV,last-price,current-price,change-percent,15.30,17.06,0.36,"Telefonica Brasil S.A.","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+VLO,last-price,current-price,change-percent,31.42,46.10,0.05,"Valero Energy Corporation","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+VZ,last-price,current-price,change-percent,216.28,10.67,0.05,"Verizon Communications Inc","TECHNOLOGY","TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)"
+WBA,last-price,current-price,change-percent,43.23,17.03,0.04,"Walgreens Boots Alliance Inc","TRADE & SERVICES","RETAIL-DRUG STORES AND PROPRIETARY STORES"
+WBK,last-price,current-price,change-percent,60.73,16.29,0.07,"Westpac Banking Corporation","FINANCE","COMMERCIAL BANKS, NEC"
+WEC,last-price,current-price,change-percent,28.09,21.46,0.03,"WEC Energy Group Inc","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+WELL,last-price,current-price,change-percent,37.07,82.28,0.03,"Welltower Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+WHR,last-price,current-price,change-percent,13.67,7.18,0.02,"Whirlpool Corporation","MANUFACTURING","HOUSEHOLD APPLIANCES"
+WPC,last-price,current-price,change-percent,14.45,31.46,0.05,"W. P. Carey Inc","REAL ESTATE & CONSTRUCTION","REAL ESTATE INVESTMENT TRUSTS"
+WSO,last-price,current-price,change-percent,11.45,42.14,0.03,"Watsco Inc","TRADE & SERVICES","WHOLESALE-HARDWARE & PLUMBING & HEATING EQUIPMENT & SUPPLIES"
+WTRG,last-price,current-price,change-percent,11.86,28.72,0.02,"Essential Utilities Inc","ENERGY & TRANSPORTATION","WATER SUPPLY"
+XEL,last-price,current-price,change-percent,34.21,21.72,0.03,"Xcel Energy Inc","ENERGY & TRANSPORTATION","ELECTRIC & OTHER SERVICES COMBINED"
+XOM,last-price,current-price,change-percent,280.94,56.81,0.05,"Exxon Mobil Corporation","ENERGY & TRANSPORTATION","PETROLEUM REFINING"
+ZION,last-price,current-price,change-percent,10.31,9.31,0.02,"Zions Bancorporation National Association","FINANCE","NATIONAL COMMERCIAL BANKS"

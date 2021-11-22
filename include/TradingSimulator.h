@@ -13,16 +13,18 @@ using StockList = std::vector< std::string>;
 class TradingParameters
 {
 public:
-	double		mInitialCapitalAllocation{0.9};
+	double		mInitialCapitalAllocation{0.01};
 	uint32_t	mStartTradingDay{0};
 	uint32_t	mEndTradingDay{0};
 	double		mStartingCash{500000};
-	double		mMaxBuy{25000}; // don't spend more than 5k on any one stock
-	double		mFirstBuy{10000}; // on the first buy, only 2k
-	double		mRebuy{5000};		// on additoinal buys, 1k
-	double		mPercentFirstBuy{-5}; // initial buy, must be a 5% drop
-	double		mPercentRebuy{-2};			// rebuy on an additional 3% drop
-	double		mTakeProfit{3};		// take profit on 3% gains
+	double		mMaxBuy{7700}; // don't spend more than 5k on any one stock
+	double		mFirstBuy{7700}; // on the first buy, only 2k
+	double		mRebuy{3000};		// on additoinal buys, 1k
+	double		mPercentFirstBuy{-2.63}; // initial buy, must be a 5% drop
+	double		mPercentRebuy{-3};			// rebuy on an additional 3% drop
+	double		mTakeProfit{6.49};		// take profit on 3% gains
+	uint32_t	mMaxLossDays{20};	// if a stock doesn't rebound in a month, sell it
+	double		mMaxLossPercentage{10}; // if a stock is down by more than 10% after a month, sell it
 };
 
 class Stonks;
