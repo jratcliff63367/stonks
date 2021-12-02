@@ -142,6 +142,9 @@
     <ClCompile Include="src\TradingSimulator.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\SHA256.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h">
@@ -325,6 +328,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\TradingSimulator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rand.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SHA256.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

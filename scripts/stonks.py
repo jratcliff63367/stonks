@@ -15,10 +15,10 @@ sleep_time = 0.9
 # --------------- GLOBAL PREFERENCES ---------------------- #
 API_KEY = '6c95f1047dmsh33044bdcb64641fp1ccbc0jsnf78737aae9d4'
 # Boolean switch so that you only run historical data once or on-demand
-historical_data = False
+historical_data = True
 nasdaq_csv = False
 company_overview = False
-refresh_history = True
+refresh_history = False
 refresh_daily = False
 # --------------------------------------------------------- #
 

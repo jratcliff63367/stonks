@@ -323,6 +323,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="src\Commands.cpp" />
     <ClCompile Include="src\InParser.cpp" />
     <ClCompile Include="src\KeyValueDatabase.cpp" />
+    <ClCompile Include="src\SHA256.cpp" />
     <ClCompile Include="src\stonks.cpp" />
     <ClCompile Include="src\sutil.cpp" />
     <ClCompile Include="src\TradingSimulator.cpp" />
@@ -424,6 +425,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="include\GetArgs.h" />
     <ClInclude Include="include\InParser.h" />
     <ClInclude Include="include\KeyValueDatabase.h" />
+    <ClInclude Include="include\rand.h" />
+    <ClInclude Include="include\SHA256.h" />
     <ClInclude Include="include\StandardDeviation.h" />
     <ClInclude Include="include\stonks.h" />
     <ClInclude Include="include\sutil.h" />
