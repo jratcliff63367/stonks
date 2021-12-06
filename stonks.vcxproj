@@ -322,11 +322,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="src\Commands.cpp" />
     <ClCompile Include="src\InParser.cpp" />
+    <ClCompile Include="src\InputLine.cpp" />
     <ClCompile Include="src\KeyValueDatabase.cpp" />
-    <ClCompile Include="src\SHA256.cpp" />
     <ClCompile Include="src\stonks.cpp" />
     <ClCompile Include="src\sutil.cpp" />
     <ClCompile Include="src\TradingSimulator.cpp" />
+    <ClCompile Include="src\WakupThread.cpp" />
+    <ClCompile Include="src\wplatform.cpp" />
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\cache.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\comparator.h" />
@@ -424,13 +426,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="include\Commands.h" />
     <ClInclude Include="include\GetArgs.h" />
     <ClInclude Include="include\InParser.h" />
+    <ClInclude Include="include\InputLine.h" />
     <ClInclude Include="include\KeyValueDatabase.h" />
     <ClInclude Include="include\rand.h" />
-    <ClInclude Include="include\SHA256.h" />
     <ClInclude Include="include\StandardDeviation.h" />
     <ClInclude Include="include\stonks.h" />
     <ClInclude Include="include\sutil.h" />
     <ClInclude Include="include\TradingSimulator.h" />
+    <ClInclude Include="include\WakeupThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\github\stonks\ZERO_CHECK.vcxproj">

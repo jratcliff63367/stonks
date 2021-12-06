@@ -142,7 +142,13 @@
     <ClCompile Include="src\TradingSimulator.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\SHA256.cpp">
+    <ClCompile Include="src\WakupThread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputLine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wplatform.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -333,7 +339,10 @@
     <ClInclude Include="include\rand.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\SHA256.h">
+    <ClInclude Include="include\WakeupThread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputLine.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -68,6 +68,9 @@ public:
 		mCommands["simulate"] = CommandType::simulate;
 
 		mStonks = stonks::Stonks::create();
+
+		printf("Enter a command. Type 'help' for help. Type 'bye' to exit.\n");
+
 	}
 
 	virtual ~CommandsImpl(void)
@@ -78,30 +81,24 @@ public:
 		}
 	}
 
-	virtual bool pump(void) final
+	virtual bool processInput(const char *str) final
 	{
 		bool ret = false;
 
-		printf("Enter a command. Type 'help' for help. Type 'bye' to exit.\n");
 
-		while ( !ret )
+		getargs::GetArgs g;
+		uint64_t argc;
+		const char **argv = g.getArgs(str,argc);
+		if ( argv )
 		{
-			std::string str;
-			std::getline(std::cin, str); 
-			GetArgs g;
-			uint32_t argc;
-			const char **argv = g.getArgs(str.c_str(),argc);
-			if ( argv )
-			{
-				ret = processCommand(argc,argv);
-			}
-
+			ret = processCommand(argc,argv);
 		}
+
 
 		return ret;
 	}
 
-	bool processCommand(uint32_t argc,const char **argv)
+	bool processCommand(uint64_t argc,const char **argv)
 	{
 		bool ret = false;
 
@@ -669,6 +666,8 @@ public:
 		}
 	}
 
+
+	bool			mExit{false};
 	double			mMarketCap{0}; // 
 	double			mPE{0};
 	double			mDividend{0};

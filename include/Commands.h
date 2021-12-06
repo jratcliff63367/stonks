@@ -33,7 +33,7 @@ class Commands
 public:
 	static Commands *create(void);
 
-	virtual bool pump(void) = 0;
+	virtual bool processInput(const char *inputLine) = 0;
 
 	virtual CommandType getCommandType(const char *str) const = 0;
 
