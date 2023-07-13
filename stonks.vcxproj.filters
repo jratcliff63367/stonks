@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="D:\github\stonks\src\InParser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="D:\github\stonks\src\leveldb\db\builder.cc">
       <Filter>src\leveldb\db</Filter>
     </ClCompile>
@@ -124,32 +127,8 @@
     <ClCompile Include="D:\github\stonks\app\main.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="src\InParser.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stonks.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KeyValueDatabase.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sutil.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TradingSimulator.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WakupThread.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\InputLine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\wplatform.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="D:\github\stonks\app\positions.cpp">
+      <Filter>app</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,39 +290,6 @@
     </ClInclude>
     <ClInclude Include="D:\github\stonks\src\snappy\snappy-stubs-internal.h">
       <Filter>src\snappy</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InParser.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\stonks.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\KeyValueDatabase.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Commands.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GetArgs.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sutil.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\StandardDeviation.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TradingSimulator.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\rand.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WakeupThread.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InputLine.h">
-      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

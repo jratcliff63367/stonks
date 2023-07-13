@@ -7,9 +7,17 @@
 #include "Commands.h"
 #include "WakeupThread.h"
 #include "InputLine.h"
+#include "positions.h"
 
 int main(int /* argc */,const char ** /* argv */)
 {
+#if 1
+	positions::Positions *p = positions::Positions::create();
+	p->buildPositions();
+	p->buildDividends();
+	p->saveResults();
+	p->release();
+#else
 	commands::Commands *c = commands::Commands::create();
 
 	wakeupthread::WakeupThread *wt = wakeupthread::WakeupThread::create();
@@ -31,6 +39,6 @@ int main(int /* argc */,const char ** /* argv */)
 	c->release();
 	il->release();
 	wt->release();
-
+#endif
 	return 0;
 }

@@ -320,15 +320,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Commands.cpp" />
-    <ClCompile Include="src\InParser.cpp" />
-    <ClCompile Include="src\InputLine.cpp" />
-    <ClCompile Include="src\KeyValueDatabase.cpp" />
-    <ClCompile Include="src\stonks.cpp" />
-    <ClCompile Include="src\sutil.cpp" />
-    <ClCompile Include="src\TradingSimulator.cpp" />
-    <ClCompile Include="src\WakupThread.cpp" />
-    <ClCompile Include="src\wplatform.cpp" />
     <ClInclude Include="D:\github\stonks\include\leveldb\c.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\cache.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\comparator.h" />
@@ -344,6 +335,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\github\stonks\include\leveldb\table.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\table_builder.h" />
     <ClInclude Include="D:\github\stonks\include\leveldb\write_batch.h" />
+    <ClCompile Include="D:\github\stonks\src\InParser.cpp" />
     <ClCompile Include="D:\github\stonks\src\leveldb\db\builder.cc" />
     <ClInclude Include="D:\github\stonks\src\leveldb\db\builder.h" />
     <ClCompile Include="D:\github\stonks\src\leveldb\db\c.cc" />
@@ -423,17 +415,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\github\stonks\src\snappy\snappy-stubs-internal.h" />
     <ClCompile Include="D:\github\stonks\src\snappy\snappy.cc" />
     <ClCompile Include="D:\github\stonks\app\main.cpp" />
-    <ClInclude Include="include\Commands.h" />
-    <ClInclude Include="include\GetArgs.h" />
-    <ClInclude Include="include\InParser.h" />
-    <ClInclude Include="include\InputLine.h" />
-    <ClInclude Include="include\KeyValueDatabase.h" />
-    <ClInclude Include="include\rand.h" />
-    <ClInclude Include="include\StandardDeviation.h" />
-    <ClInclude Include="include\stonks.h" />
-    <ClInclude Include="include\sutil.h" />
-    <ClInclude Include="include\TradingSimulator.h" />
-    <ClInclude Include="include\WakeupThread.h" />
+    <ClCompile Include="D:\github\stonks\app\positions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\github\stonks\ZERO_CHECK.vcxproj">

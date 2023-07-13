@@ -101,6 +101,7 @@ file (GLOB_RECURSE leveldb_EXTERNAL_SOURCES
     src/snappy/src/snappy/snappy-stubs-internal.cc
     src/snappy/snappy-stubs-internal.h
     src/snappy/snappy.cc
+    src/InParser.cpp
 )
 
 
@@ -118,6 +119,7 @@ endif()
 
 set(stonks_SOURCES
 	app/main.cpp
+	app/positions.cpp
 )
 
 #message("External sources:\n${stonks_EXTERNAL_SOURCES}")
